@@ -1,0 +1,102 @@
+[gd_scene format=3 uid="uid://bl5uslnc8sro4"]
+
+[ext_resource type="FontFile" uid="uid://gh70p3nxahqe" path="res://Sprites/Other/boldpixels.ttf" id="1_7uv81"]
+[ext_resource type="Texture2D" uid="uid://bya1xeyrrt2ov" path="res://Sprites/Other/icon.svg" id="2_3cvmy"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_rhts7"]
+blend_mode = 1
+
+[node name="Main Menu" type="Control" unique_id=1389109679]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="." unique_id=66757964]
+material = SubResource("CanvasItemMaterial_rhts7")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BoxContainer" type="BoxContainer" parent="Panel" unique_id=1831299933]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+vertical = true
+
+[node name="Label" type="Label" parent="Panel/BoxContainer" unique_id=1008331752]
+texture_filter = 1
+layout_mode = 2
+size_flags_vertical = 6
+size_flags_stretch_ratio = 0.33
+theme_override_colors/font_color = Color(0.6745098, 1, 0.41568628, 1)
+theme_override_colors/font_shadow_color = Color(17.976582, 0, 18.892157, 0)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 20
+theme_override_fonts/font = ExtResource("1_7uv81")
+theme_override_font_sizes/font_size = 60
+text = "Mr. Squiggles's Search For Determination"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="Panel/BoxContainer" unique_id=405060541]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.25
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/BoxContainer" unique_id=2130352713]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VSeparator" type="VSeparator" parent="Panel/BoxContainer/HBoxContainer" unique_id=681413148]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.33
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/BoxContainer/HBoxContainer" unique_id=998687189]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 18
+
+[node name="Play" type="Button" parent="Panel/BoxContainer/HBoxContainer/VBoxContainer" unique_id=993403729]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Upgrade" type="MenuButton" parent="Panel/BoxContainer/HBoxContainer/VBoxContainer" unique_id=224210413]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("1_7uv81")
+text = "Upgrades"
+icon = ExtResource("2_3cvmy")
+
+[node name="Panel" type="Panel" parent="Panel/BoxContainer/HBoxContainer/VBoxContainer/Upgrade" unique_id=960178283]
+layout_mode = 0
+offset_right = 705.0
+offset_bottom = 131.0
+
+[node name="Options" type="MenuButton" parent="Panel/BoxContainer/HBoxContainer/VBoxContainer" unique_id=1349992798]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Exit" type="Button" parent="Panel/BoxContainer/HBoxContainer/VBoxContainer" unique_id=1600187466]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VSeparator2" type="VSeparator" parent="Panel/BoxContainer/HBoxContainer" unique_id=758240837]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.33
+
+[node name="HSeparator2" type="HSeparator" parent="Panel/BoxContainer" unique_id=1457101572]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.25

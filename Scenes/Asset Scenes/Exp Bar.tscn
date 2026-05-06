@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://33xprg5tdhqw"]
+
+[ext_resource type="Script" uid="uid://bs1gm82wchfh1" path="res://Scenes/Asset Scenes/experience_bar.gd" id="1_1hw5r"]
+[ext_resource type="FontFile" uid="uid://gh70p3nxahqe" path="res://Sprites/Other/boldpixels.ttf" id="1_pcxrc"]
+
+[node name="Experience Bar" type="Control" unique_id=650054848]
+layout_mode = 3
+anchor_right = 1.0
+anchor_bottom = 0.042000003
+offset_bottom = -27.216002
+grow_horizontal = 2
+
+[node name="Experience Bar" type="ProgressBar" parent="." unique_id=1246569202]
+modulate = Color(0, 0.62352943, 1, 1)
+self_modulate = Color(0.3137255, 0.81960785, 1, 1)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 54.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.9490196, 1, 0.9490196, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_pcxrc")
+theme_override_font_sizes/font_size = 32
+rounded = true
+script = ExtResource("1_1hw5r")

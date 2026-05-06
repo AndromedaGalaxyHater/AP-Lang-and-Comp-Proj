@@ -1,0 +1,82 @@
+[gd_scene format=3 uid="uid://bjy4arkfco4da"]
+
+[ext_resource type="FontFile" uid="uid://gh70p3nxahqe" path="res://Sprites/Other/boldpixels.ttf" id="1_sdnrc"]
+[ext_resource type="Texture2D" uid="uid://detwwolyy23jg" path="res://Sprites/Other/Heart.png" id="2_ld8uh"]
+[ext_resource type="Texture2D" uid="uid://lyo3xjdqxjp5" path="res://Sprites/Other/Sword.png" id="3_5jghm"]
+[ext_resource type="Texture2D" uid="uid://dpl0x2sw8luw7" path="res://Sprites/Other/Speed_Boost.png" id="4_uvkdy"]
+[ext_resource type="Script" uid="uid://cjsxbt1t4ct7p" path="res://Scenes/Asset Scenes/level_up_screen.gd" id="5_uvkdy"]
+
+[node name="Level Up Screen" type="Control" unique_id=1697769970]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 6
+size_flags_vertical = 10
+script = ExtResource("5_uvkdy")
+
+[node name="Panel" type="Panel" parent="." unique_id=1268031883]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel" unique_id=521772136]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer" unique_id=1155411506]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 20
+
+[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer" unique_id=180982723]
+custom_minimum_size = Vector2(0, 108)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_sdnrc")
+theme_override_font_sizes/font_size = 32
+text = "You Leveled Up!
+Select An Upgrade"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Health Increase" type="Button" parent="Panel/MarginContainer/VBoxContainer" unique_id=1686482973]
+texture_filter = 1
+custom_minimum_size = Vector2(0, 108)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_sdnrc")
+theme_override_font_sizes/font_size = 32
+text = "Increase Health"
+icon = ExtResource("2_ld8uh")
+
+[node name="Damage Increase" type="Button" parent="Panel/MarginContainer/VBoxContainer" unique_id=1752665685]
+texture_filter = 1
+custom_minimum_size = Vector2(0, 108)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_sdnrc")
+theme_override_font_sizes/font_size = 32
+text = "Increase Damage"
+icon = ExtResource("3_5jghm")
+
+[node name="Speed Increase" type="Button" parent="Panel/MarginContainer/VBoxContainer" unique_id=1783028613]
+texture_filter = 1
+custom_minimum_size = Vector2(0, 108)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_sdnrc")
+theme_override_font_sizes/font_size = 32
+text = "Increase Speed"
+icon = ExtResource("4_uvkdy")
+
+[connection signal="pressed" from="Panel/MarginContainer/VBoxContainer/Health Increase" to="." method="_on_health_increase_pressed"]
+[connection signal="pressed" from="Panel/MarginContainer/VBoxContainer/Damage Increase" to="." method="_on_damage_increase_pressed"]
+[connection signal="pressed" from="Panel/MarginContainer/VBoxContainer/Speed Increase" to="." method="_on_speed_increase_pressed"]
