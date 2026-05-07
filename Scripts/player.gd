@@ -3,7 +3,7 @@ extends CharacterBody2D
 @export var BASE_SPEED : int = Global.BASE_SPEED
 @export var velocity_mod : float = 1
 @onready var anim = $AnimatedSprite2D
-@onready var attack_anim = $AnimationPlayer
+@onready var attack_anim = %AttackAnimation
 @onready var timer = $"I-Frames"
 @onready var sword_unsheath = $AudioStreamPlayer2D
 @onready var DeathMusic = $DieMusic
@@ -37,13 +37,15 @@ func die():
 		DeathMusic.play()
 
 func _physics_process(_delta: float) -> void:
-	die()
-	sprint()
-	get_input()
-	move_and_slide()
-	animation_player()
-	check_anim()
-	handle_health()
+	if !Global.paused:
+		die()
+		sprint()
+		get_input()
+		move_and_slide()
+		animation_player()
+		check_anim()
+		handle_health()
+	show_pause_menu()
 	
 	if dead:
 		Global.SPEED = 0
@@ -60,23 +62,10 @@ func animation_player():
 	if can_play and dead == false:
 		# attack animations
 		if Input.is_action_just_pressed("Attack"):
-			match anim_dir:
-				"Down":
-					attack_anim.play("Down Attack")
-					Global.SPEED = 0
-					sword_unsheath.play()
-				"Up":
-					attack_anim.play("Up Attack")
-					Global.SPEED = 0
-					sword_unsheath.play()
-				"Right":
-					attack_anim.play("Right Attack")
-					Global.SPEED = 0
-					sword_unsheath.play()
-				"Left":
-					attack_anim.play("Left Attack")
-					Global.SPEED = 0
-					sword_unsheath.play()
+				attack_anim.play("Attack")
+				print("Attacking")
+				Global.SPEED = 0
+				sword_unsheath.play()
 		# walking animations
 		elif Input.is_action_pressed("Move Down"):
 			anim.play("Down Walk")
@@ -107,15 +96,15 @@ func animation_player():
 			Global.SPEED = Global.BASE_SPEED
 
 func check_anim():
-	match anim.animation:
-			"Down Attack":
-				can_play = false
-			"Up Attack":
-				can_play = false
-			"Side Attack":
-				can_play = false
-			"Die":
-				can_play = false
+	if anim.animation == "Die" or attack_anim.is_playing():
+			can_play = false
+
+func show_pause_menu():
+	pass
+	if Input.is_action_just_pressed("Pause"):
+		var pause_menu = %"Pause Menu"
+		pause_menu.visible = true
+		Global.paused = true
 
 func _on_animated_sprite_2d_animation_finished() -> void:
 	if anim.animation != "Die":

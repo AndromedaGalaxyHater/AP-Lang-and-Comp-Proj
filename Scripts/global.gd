@@ -10,3 +10,4 @@ var player_experience_to_level_up : int = 100
 var player_level : int = 0
 var SPEED : int = 100
 var BASE_SPEED : int = 100
+var paused : bool = false

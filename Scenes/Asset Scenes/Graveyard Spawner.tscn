@@ -1,7 +1,7 @@
 [gd_scene format=4 uid="uid://gd487gi6kd2b"]
 
 [ext_resource type="Texture2D" uid="uid://w1i3ashewtnv" path="res://Tiles/TX Props with Shadow.png" id="1_1ld72"]
-[ext_resource type="Script" uid="uid://cppinojpb0dem" path="res://Scenes/Asset Scenes/graveyard_spawner.gd" id="1_yjxr8"]
+[ext_resource type="Script" uid="uid://cppinojpb0dem" path="res://Scripts/graveyard_spawner.gd" id="1_yjxr8"]
 [ext_resource type="PackedScene" uid="uid://bl8aaqyybjvm1" path="res://Scenes/Asset Scenes/slime.tscn" id="2_s7qjp"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_suklg"]

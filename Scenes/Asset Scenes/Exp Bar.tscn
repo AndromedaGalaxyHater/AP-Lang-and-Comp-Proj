@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://33xprg5tdhqw"]
 
-[ext_resource type="Script" uid="uid://bs1gm82wchfh1" path="res://Scenes/Asset Scenes/experience_bar.gd" id="1_1hw5r"]
+[ext_resource type="Script" uid="uid://bs1gm82wchfh1" path="res://Scripts/experience_bar.gd" id="1_1hw5r"]
 [ext_resource type="FontFile" uid="uid://gh70p3nxahqe" path="res://Sprites/Other/boldpixels.ttf" id="1_pcxrc"]
 
 [node name="Experience Bar" type="Control" unique_id=650054848]

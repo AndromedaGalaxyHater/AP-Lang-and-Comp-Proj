@@ -1,10 +1,102 @@
 [gd_scene format=3 uid="uid://bl5uslnc8sro4"]
 
+[ext_resource type="Script" uid="uid://4bgxwpfx0tci" path="res://Scripts/main_menu.gd" id="1_3cvmy"]
 [ext_resource type="FontFile" uid="uid://gh70p3nxahqe" path="res://Sprites/Other/boldpixels.ttf" id="1_7uv81"]
-[ext_resource type="Texture2D" uid="uid://bya1xeyrrt2ov" path="res://Sprites/Other/icon.svg" id="2_3cvmy"]
+[ext_resource type="PackedScene" uid="uid://baxqsqrn2fq0k" path="res://Scenes/Asset Scenes/options_menu.tscn" id="2_xjdvv"]
+[ext_resource type="PackedScene" uid="uid://np16bm1egwsr" path="res://Scenes/Asset Scenes/upgrade_panel.tscn" id="3_xjdvv"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_rhts7"]
 blend_mode = 1
+
+[sub_resource type="Animation" id="Animation_xjdvv"]
+resource_name = "LeaveUpgradeScreen"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../../../..:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -648), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../../../../../UpgradePanel:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 648)]
+}
+
+[sub_resource type="Animation" id="Animation_s0w8u"]
+length = 6.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../../../..:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -648)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../../../../../UpgradePanel:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 648), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_84enj"]
+resource_name = "UpgradeAnimation"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../../../..:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -648)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../../../../../UpgradePanel:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 648), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ntlhr"]
+_data = {
+&"LeaveUpgradeScreen": SubResource("Animation_xjdvv"),
+&"RESET": SubResource("Animation_s0w8u"),
+&"UpgradeAnimation": SubResource("Animation_84enj")
+}
 
 [node name="Main Menu" type="Control" unique_id=1389109679]
 layout_mode = 3
@@ -13,8 +105,21 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_3cvmy")
 
-[node name="Panel" type="Panel" parent="." unique_id=66757964]
+[node name="Options Menu" parent="." unique_id=98617940 instance=ExtResource("2_xjdvv")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+
+[node name="UpgradePanel" parent="." unique_id=345639289 node_paths=PackedStringArray("update_animator") instance=ExtResource("3_xjdvv")]
+layout_mode = 1
+offset_top = 648.0
+offset_bottom = 647.99976
+update_animator = NodePath("../Main_Panel/BoxContainer/HBoxContainer/VBoxContainer/Upgrades/UpgradeAnimation")
+
+[node name="Main_Panel" type="Panel" parent="." unique_id=66757964]
+unique_name_in_owner = true
 material = SubResource("CanvasItemMaterial_rhts7")
 layout_mode = 1
 anchors_preset = 15
@@ -23,7 +128,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="BoxContainer" type="BoxContainer" parent="Panel" unique_id=1831299933]
+[node name="BoxContainer" type="BoxContainer" parent="Main_Panel" unique_id=1831299933]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -32,7 +137,7 @@ grow_horizontal = 2
 grow_vertical = 2
 vertical = true
 
-[node name="Label" type="Label" parent="Panel/BoxContainer" unique_id=1008331752]
+[node name="Label" type="Label" parent="Main_Panel/BoxContainer" unique_id=1008331752]
 texture_filter = 1
 layout_mode = 2
 size_flags_vertical = 6
@@ -47,56 +152,77 @@ text = "Mr. Squiggles's Search For Determination"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HSeparator" type="HSeparator" parent="Panel/BoxContainer" unique_id=405060541]
+[node name="HSeparator" type="HSeparator" parent="Main_Panel/BoxContainer" unique_id=405060541]
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.25
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Panel/BoxContainer" unique_id=2130352713]
+[node name="HBoxContainer" type="HBoxContainer" parent="Main_Panel/BoxContainer" unique_id=2130352713]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="VSeparator" type="VSeparator" parent="Panel/BoxContainer/HBoxContainer" unique_id=681413148]
+[node name="VSeparator" type="VSeparator" parent="Main_Panel/BoxContainer/HBoxContainer" unique_id=681413148]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.33
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel/BoxContainer/HBoxContainer" unique_id=998687189]
+[node name="VBoxContainer" type="VBoxContainer" parent="Main_Panel/BoxContainer/HBoxContainer" unique_id=998687189]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 18
 
-[node name="Play" type="Button" parent="Panel/BoxContainer/HBoxContainer/VBoxContainer" unique_id=993403729]
+[node name="Play" type="Button" parent="Main_Panel/BoxContainer/HBoxContainer/VBoxContainer" unique_id=993403729]
 layout_mode = 2
 size_flags_vertical = 3
-
-[node name="Upgrade" type="MenuButton" parent="Panel/BoxContainer/HBoxContainer/VBoxContainer" unique_id=224210413]
-layout_mode = 2
-size_flags_vertical = 3
+theme_override_constants/outline_size = 20
 theme_override_fonts/font = ExtResource("1_7uv81")
+theme_override_font_sizes/font_size = 48
+text = "Play"
+
+[node name="Upgrades" type="Button" parent="Main_Panel/BoxContainer/HBoxContainer/VBoxContainer" unique_id=1198359958]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 20
+theme_override_fonts/font = ExtResource("1_7uv81")
+theme_override_font_sizes/font_size = 48
 text = "Upgrades"
-icon = ExtResource("2_3cvmy")
 
-[node name="Panel" type="Panel" parent="Panel/BoxContainer/HBoxContainer/VBoxContainer/Upgrade" unique_id=960178283]
-layout_mode = 0
-offset_right = 705.0
-offset_bottom = 131.0
+[node name="UpgradeAnimation" type="AnimationPlayer" parent="Main_Panel/BoxContainer/HBoxContainer/VBoxContainer/Upgrades" unique_id=1401876393]
+unique_name_in_owner = true
+libraries/ = SubResource("AnimationLibrary_ntlhr")
 
-[node name="Options" type="MenuButton" parent="Panel/BoxContainer/HBoxContainer/VBoxContainer" unique_id=1349992798]
+[node name="Options" type="Button" parent="Main_Panel/BoxContainer/HBoxContainer/VBoxContainer" unique_id=1924088511]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 20
+theme_override_fonts/font = ExtResource("1_7uv81")
+theme_override_font_sizes/font_size = 48
+text = "Options"
 
-[node name="Exit" type="Button" parent="Panel/BoxContainer/HBoxContainer/VBoxContainer" unique_id=1600187466]
+[node name="Exit" type="Button" parent="Main_Panel/BoxContainer/HBoxContainer/VBoxContainer" unique_id=1600187466]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_constants/outline_size = 20
+theme_override_fonts/font = ExtResource("1_7uv81")
+theme_override_font_sizes/font_size = 48
+text = "Exit
+"
 
-[node name="VSeparator2" type="VSeparator" parent="Panel/BoxContainer/HBoxContainer" unique_id=758240837]
+[node name="VSeparator2" type="VSeparator" parent="Main_Panel/BoxContainer/HBoxContainer" unique_id=758240837]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.33
 
-[node name="HSeparator2" type="HSeparator" parent="Panel/BoxContainer" unique_id=1457101572]
+[node name="HSeparator2" type="HSeparator" parent="Main_Panel/BoxContainer" unique_id=1457101572]
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.25
+
+[connection signal="leave_options" from="Options Menu" to="." method="_on_options_menu_leave_options"]
+[connection signal="pressed" from="Main_Panel/BoxContainer/HBoxContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Main_Panel/BoxContainer/HBoxContainer/VBoxContainer/Upgrades" to="." method="_on_upgrades_pressed"]
+[connection signal="pressed" from="Main_Panel/BoxContainer/HBoxContainer/VBoxContainer/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="Main_Panel/BoxContainer/HBoxContainer/VBoxContainer/Exit" to="." method="_on_exit_pressed"]

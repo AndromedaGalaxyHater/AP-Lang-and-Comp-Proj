@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://detwwolyy23jg" path="res://Sprites/Other/Heart.png" id="2_ld8uh"]
 [ext_resource type="Texture2D" uid="uid://lyo3xjdqxjp5" path="res://Sprites/Other/Sword.png" id="3_5jghm"]
 [ext_resource type="Texture2D" uid="uid://dpl0x2sw8luw7" path="res://Sprites/Other/Speed_Boost.png" id="4_uvkdy"]
-[ext_resource type="Script" uid="uid://cjsxbt1t4ct7p" path="res://Scenes/Asset Scenes/level_up_screen.gd" id="5_uvkdy"]
+[ext_resource type="Script" uid="uid://cjsxbt1t4ct7p" path="res://Scripts/level_up_screen.gd" id="5_uvkdy"]
 
 [node name="Level Up Screen" type="Control" unique_id=1697769970]
 visible = false

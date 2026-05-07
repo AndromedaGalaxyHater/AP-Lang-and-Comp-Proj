@@ -17,14 +17,15 @@ var velocity_mod : int = 1
 var enemy_exp : int = 50
 
 func _physics_process(_delta: float) -> void:
-	attack()
-	animations()
-	get_dir()
-	handle_health()
-	if player != null and Global.player_is_dead == false:
-		var direction = global_position.direction_to(player.global_position)
-		velocity = direction * SPEED * velocity_mod
-		move_and_slide()
+	if !Global.paused:
+		attack()
+		animations()
+		get_dir()
+		handle_health()
+		if player != null and Global.player_is_dead == false:
+			var direction = global_position.direction_to(player.global_position)
+			velocity = direction * SPEED * velocity_mod
+			move_and_slide()
 
 # handles health
 func handle_health():

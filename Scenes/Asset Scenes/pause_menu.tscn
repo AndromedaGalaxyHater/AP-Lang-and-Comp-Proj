@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://c2fvmbjlyeb1h"]
+
+[ext_resource type="Script" uid="uid://bok44y1lo64k6" path="res://Scenes/Asset Scenes/pause_menu.gd" id="1_xxvbl"]
+[ext_resource type="PackedScene" uid="uid://baxqsqrn2fq0k" path="res://Scenes/Asset Scenes/options_menu.tscn" id="3_rne34"]
+
+[node name="Pause Menu" type="Control" unique_id=1789256309 node_paths=PackedStringArray("vbox")]
+z_index = 20
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xxvbl")
+vbox = NodePath("VBoxContainer")
+
+[node name="Options Menu" parent="." unique_id=98617940 instance=ExtResource("3_rne34")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=337189627]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.25
+anchor_top = 0.22100002
+anchor_right = 0.72900003
+anchor_bottom = 0.75000006
+offset_top = -0.20800781
+offset_right = 0.1920166
+grow_horizontal = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Resume" type="Button" parent="VBoxContainer" unique_id=287458228]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 80
+text = "Resume"
+
+[node name="Options" type="Button" parent="VBoxContainer" unique_id=1801328755]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 80
+text = "Options"
+
+[node name="Return To Main Menu" type="Button" parent="VBoxContainer" unique_id=1446744391]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 80
+text = "Main Menu"
+
+[connection signal="leave_options" from="Options Menu" to="." method="_on_options_menu_leave_options"]
+[connection signal="pressed" from="VBoxContainer/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="VBoxContainer/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="VBoxContainer/Return To Main Menu" to="." method="_on_return_to_main_menu_pressed"]
