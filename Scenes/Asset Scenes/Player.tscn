@@ -6,7 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://drt3s53eum6mb" path="res://Audio/creatorshome-draw-a-sword-327726.mp3" id="3_uso3q"]
 [ext_resource type="AudioStream" uid="uid://dygu0mq5cbnpw" path="res://Audio/rip-gong-made-with-Voicemod.mp3" id="4_b3f4a"]
 [ext_resource type="Script" uid="uid://ct5nm6pe50xpe" path="res://Scripts/aura.gd" id="6_v3x5v"]
-[ext_resource type="Script" path="res://Scripts/progress_bar.gd" id="7_grhxo"]
+[ext_resource type="Script" uid="uid://b672f64eudgtl" path="res://Scripts/progress_bar.gd" id="7_grhxo"]
 [ext_resource type="PackedScene" uid="uid://c2fvmbjlyeb1h" path="res://Scenes/Asset Scenes/pause_menu.tscn" id="8_v3x5v"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dwhe3"]
@@ -429,7 +429,7 @@ drag_vertical_enabled = true
 
 [node name="Dash Immunity" type="Timer" parent="." unique_id=1757487085]
 unique_name_in_owner = true
-wait_time = 0.2
+wait_time = 0.4
 one_shot = true
 
 [node name="attack_immunity" type="Timer" parent="." unique_id=148016148]
@@ -491,12 +491,30 @@ value = 50.0
 show_percentage = false
 script = ExtResource("7_grhxo")
 
-[node name="Pause Menu" parent="." unique_id=1789256309 instance=ExtResource("8_v3x5v")]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=74752598]
+
+[node name="UI HealthBar" type="ProgressBar" parent="CanvasLayer" unique_id=99729784]
+modulate = Color(0, 1, 0, 1)
+self_modulate = Color(1.0309138, 1.0309138, 1.0309138, 1)
+z_index = 2
+custom_minimum_size = Vector2(0, 50)
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -4.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 4
+theme = SubResource("Theme_grhxo")
+theme_override_font_sizes/font_size = 48
+value = 50.0
+script = ExtResource("7_grhxo")
+
+[node name="Pause Menu" parent="CanvasLayer" unique_id=1789256309 instance=ExtResource("8_v3x5v")]
 unique_name_in_owner = true
 visible = false
-offset_top = -24.0
-offset_bottom = -24.0
-scale = Vector2(0.2, 0.2)
+z_index = 500
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="timeout" from="Dash Immunity" to="." method="_on_dash_immunity_timeout"]
@@ -504,3 +522,4 @@ scale = Vector2(0.2, 0.2)
 [connection signal="timeout" from="I-Frames" to="." method="_on_i_frames_timeout"]
 [connection signal="finished" from="DieMusic" to="." method="_on_die_music_finished"]
 [connection signal="animation_finished" from="AttackAnimation" to="." method="_on_animation_player_animation_finished"]
+[connection signal="resume" from="CanvasLayer/Pause Menu" to="." method="_on_pause_menu_resume"]

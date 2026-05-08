@@ -515,19 +515,16 @@ position = Vector2(-176, 80)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1286775685]
 
-[node name="Level Up Screen" parent="CanvasLayer" unique_id=1697769970 instance=ExtResource("10_e2vx1")]
-
 [node name="Experience Bar" parent="CanvasLayer" unique_id=650054848 instance=ExtResource("9_8uxqj")]
 custom_minimum_size = Vector2(500, 0)
 anchors_preset = 15
 anchor_bottom = 1.0
-offset_left = 479.0
-offset_top = 2.0
-offset_right = 479.0
-offset_bottom = 2.0
+offset_bottom = -557.0
 grow_vertical = 2
-scale = Vector2(0.25, 0.25)
 size_flags_vertical = 0
 
-[node name="Player" parent="." unique_id=1586033930 instance=ExtResource("1_hty4m")]
+[node name="Level Up Screen" parent="CanvasLayer" unique_id=1697769970 instance=ExtResource("10_e2vx1")]
+
+[node name="Player" parent="." unique_id=1586033930 node_paths=PackedStringArray("experience_bar") instance=ExtResource("1_hty4m")]
 position = Vector2(24, 132)
+experience_bar = NodePath("../CanvasLayer/Experience Bar")

@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 @export var BASE_SPEED : int = Global.BASE_SPEED
 @export var velocity_mod : float = 1
+@export var experience_bar : Control
 @onready var anim = $AnimatedSprite2D
 @onready var attack_anim = %AttackAnimation
 @onready var timer = $"I-Frames"
@@ -17,9 +18,24 @@ var can_play : bool = true
 var dead = false
 var health = Global.player_health
 var SPEED = Global.SPEED
+var lifesteal_percent : float = 200
+
+var quick_unlocked = false
+var invinsible_unlocked = false
+var fire_unlocked = false
+var ice_unlocked = false
+var lifesteal_unlocked = false
+var aoe_unlocked = false
+var fireball_unlocked = false
+var taming_unlocked = false
+
 
 func _ready() -> void:
 	_check_abilities()
+	Global.player_health = Global.max_player_health
+	Global.player_is_dead = false
+	velocity_mod = 1
+	Global.SPEED = Global.BASE_SPEED
 	pass
 
 func get_input():
@@ -42,7 +58,6 @@ func dash():
 		Global.SPEED = Global.BASE_SPEED
 		dash_immunity = true
 		dash_immunity_timer.start()
-		
 
 func die():
 	if health <= 0 and anim.animation != "Die":
@@ -62,16 +77,35 @@ func _physics_process(_delta: float) -> void:
 		animation_player()
 		check_anim()
 		handle_health()
+		
+		if quick_unlocked:
+			quick_dash()
+		if invinsible_unlocked:
+			invinsible_dash()
+		if fire_unlocked:
+			fire_damage()
+		if ice_unlocked:
+			ice_damage()
+		if lifesteal_unlocked:
+			lifesteal()
+		if aoe_unlocked:
+			aoe_damage()
+		if fireball_unlocked:
+			fireball()
+		if taming_unlocked:
+			enemy_taming()
+	
 	show_pause_menu()
-
+	
 	if dead:
 		Global.SPEED = 0
 func handle_health():
 	# starts i-frame timer when hit
 	if Global.player_invinsible and timer.is_stopped() and attack_anim.is_playing() == false:
 		timer.start()
-		
 	health = Global.player_health
+	if Global.player_health > Global.player_max_health:
+		Global.player_health = Global.player_max_health
 
 # handles animations
 func animation_player():
@@ -122,43 +156,49 @@ func show_pause_menu():
 		var pause_menu = %"Pause Menu"
 		pause_menu.visible = true
 		Global.paused = true
+		experience_bar.visible = false
 
 func _check_abilities():
 	# checks if abilities are activated and calls to activate their affects
 	if Global.quick_dash:
-		print("quickly dashing ing ing")
-		quick_dash()
+		quick_unlocked = true
 	if Global.invincible_dash:
-		invinsible_dash()
+		invinsible_unlocked = true
 	if Global.fire_damage:
-		fire_damage()
+		fire_unlocked = true
 	if Global.ice_damage:
-		ice_damage()
+		ice_unlocked = true
 	if Global.lifesteal:
-		lifesteal()
+		lifesteal_unlocked = true
 	if Global.aoe_spell:
-		aoe_damage()
+		aoe_unlocked = true
 	if Global.fireball:
-		fireball()
+		fireball_unlocked = true
 	if Global.enemy_taming:
-		enemy_taming()
+		taming_unlocked = true
 
 func quick_dash():
 	Dash_Wait.wait_time -= 0.5
 	print("quickly dashing")
 
 func invinsible_dash():
-	timer.play()
+	timer.start()
+	Global.player_invinsible = true
 
 func fire_damage():
 	
 	pass
 
 func ice_damage():
+	
 	pass
 
 func lifesteal():
-	pass
+	
+	if attack_anim.is_playing():
+		print("stealing_life")
+		Global.player_health += Global.explode_damage * lifesteal_percent
+	
 
 func aoe_damage():
 	pass
@@ -170,7 +210,7 @@ func enemy_taming():
 	pass
 
 func _on_animated_sprite_2d_animation_finished() -> void:
-	if anim.animation != "Die":
+	if anim.animation != "D!e":
 		can_play = true
 		Global.SPEED = Global.BASE_SPEED
 
@@ -199,3 +239,7 @@ func _on_dash_timer_timeout() -> void:
 
 func _on_dash_immunity_timeout() -> void:
 	dash_immunity = false
+
+
+func _on_pause_menu_resume() -> void:
+	experience_bar.visible = true

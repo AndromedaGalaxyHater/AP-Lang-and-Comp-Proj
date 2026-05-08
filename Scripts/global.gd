@@ -1,7 +1,8 @@
 extends Node
 
 var max_player_health : int = 50
-var player_health : int = 50
+var player_health : float = 50
+var player_max_health : int = 50
 var player_is_dead : bool = false
 var player_invinsible : bool = false
 var explode_damage : int = 5
