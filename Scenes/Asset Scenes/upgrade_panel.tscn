@@ -33,6 +33,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="ItemList" type="ItemList" parent="Panel/VBoxContainer" unique_id=1005980925]
+unique_name_in_owner = true
 texture_filter = 1
 layout_mode = 2
 theme_override_constants/outline_size = 10
@@ -45,15 +46,15 @@ auto_height = true
 item_count = 8
 same_column_width = true
 icon_mode = 0
-item_0/text = "Firebringer (Fire Damage)"
-item_1/text = "Fast Learner (Dash with a lower cooldown)"
-item_2/text = "Title Card (can't take damage when dashing)"
+item_0/text = "Fast Learner (Dash with a lower cooldown)"
+item_1/text = "Title Card"
+item_2/text = "Firebringer (Does Fire Damage)"
 item_3/text = "Chilling Touch(Cold Damage)"
 item_4/text = "Vamirism (Grants Lifesteal)"
 item_4/icon = ExtResource("2_gnp5v")
 item_5/text = "Tactical Learning(Nuke)"
 item_5/icon = ExtResource("2_gnp5v")
-item_6/text = "I don't know what to call this one(Ranged Ability)"
+item_6/text = "Fireball (Shoot A Fireball)"
 item_7/text = "Keep Your Friends Close (And Your Enemies Closer)(Tame Enemies)"
 
 [node name="ExitUpgradePanel" type="Button" parent="Panel/VBoxContainer" unique_id=1646111368]

@@ -8,7 +8,11 @@ extends CharacterBody2D
 @onready var sword_unsheath = $AudioStreamPlayer2D
 @onready var DeathMusic = $DieMusic
 @onready var DeathSFX = $DieSFX
+@onready var Dash_Wait = %Dash_Timer
+@onready var dash_immunity_timer = %"Dash Immunity"
+var dash_immunity = false
 var anim_dir : String = "Down"
+var dash_cooldown = false
 var can_play : bool = true
 var dead = false
 var health = Global.player_health
@@ -27,8 +31,18 @@ func sprint():
 		velocity_mod = 1.5
 		can_play = true
 		Global.SPEED = Global.BASE_SPEED
-	else:
+	elif dash_immunity == false:
 		velocity_mod = 1
+
+func dash():
+	if Input.is_action_pressed("Dash") and can_play and dash_cooldown == false:
+		velocity_mod = 5
+		Dash_Wait.start()
+		dash_cooldown = true
+		Global.SPEED = Global.BASE_SPEED
+		dash_immunity = true
+		dash_immunity_timer.start()
+		
 
 func die():
 	if health <= 0 and anim.animation != "Die":
@@ -41,6 +55,7 @@ func die():
 func _physics_process(_delta: float) -> void:
 	if !Global.paused:
 		die()
+		dash()
 		sprint()
 		get_input()
 		move_and_slide()
@@ -48,7 +63,7 @@ func _physics_process(_delta: float) -> void:
 		check_anim()
 		handle_health()
 	show_pause_menu()
-	
+
 	if dead:
 		Global.SPEED = 0
 func handle_health():
@@ -109,20 +124,34 @@ func show_pause_menu():
 		Global.paused = true
 
 func _check_abilities():
-	for ability_dict in Global.ability_list:
-		for ability in ability_dict:
-			if ability_dict[ability]:
-				match ability:
-					Global.quick_dash:
-						quick_dash()
+	# checks if abilities are activated and calls to activate their affects
+	if Global.quick_dash:
+		print("quickly dashing ing ing")
+		quick_dash()
+	if Global.invincible_dash:
+		invinsible_dash()
+	if Global.fire_damage:
+		fire_damage()
+	if Global.ice_damage:
+		ice_damage()
+	if Global.lifesteal:
+		lifesteal()
+	if Global.aoe_spell:
+		aoe_damage()
+	if Global.fireball:
+		fireball()
+	if Global.enemy_taming:
+		enemy_taming()
 
 func quick_dash():
+	Dash_Wait.wait_time -= 0.5
 	print("quickly dashing")
 
-func invincible_dash():
-	pass
+func invinsible_dash():
+	timer.play()
 
 func fire_damage():
+	
 	pass
 
 func ice_damage():
@@ -162,3 +191,11 @@ func _on_animation_player_animation_finished(_anim_name: StringName) -> void:
 
 func _on_die_music_finished() -> void:
 	DeathSFX.play()
+
+
+func _on_dash_timer_timeout() -> void:
+	dash_cooldown = false
+
+
+func _on_dash_immunity_timeout() -> void:
+	dash_immunity = false
