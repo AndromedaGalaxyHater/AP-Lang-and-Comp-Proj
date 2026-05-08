@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://cwljuud1kvnjl" path="res://Tiles/fences.png" id="4_qreci"]
 [ext_resource type="PackedScene" uid="uid://bl8aaqyybjvm1" path="res://Scenes/Asset Scenes/slime.tscn" id="6_qreci"]
 [ext_resource type="PackedScene" uid="uid://gd487gi6kd2b" path="res://Scenes/Asset Scenes/Graveyard Spawner.tscn" id="8_8yjyg"]
+[ext_resource type="PackedScene" uid="uid://33xprg5tdhqw" path="res://Scenes/Asset Scenes/Exp Bar.tscn" id="9_8uxqj"]
 [ext_resource type="PackedScene" uid="uid://bjy4arkfco4da" path="res://Scenes/Asset Scenes/level_up_screen.tscn" id="10_e2vx1"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0jl5p"]
@@ -516,15 +517,17 @@ position = Vector2(-176, 80)
 
 [node name="Level Up Screen" parent="CanvasLayer" unique_id=1697769970 instance=ExtResource("10_e2vx1")]
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer" unique_id=1053100036]
-custom_minimum_size = Vector2(5, 5)
-anchors_preset = 10
-anchor_right = 1.0
-offset_bottom = 5.0
-grow_horizontal = 2
-theme_override_constants/margin_left = 150
-theme_override_constants/margin_top = 30
-theme_override_constants/margin_right = 150
+[node name="Experience Bar" parent="CanvasLayer" unique_id=650054848 instance=ExtResource("9_8uxqj")]
+custom_minimum_size = Vector2(500, 0)
+anchors_preset = 15
+anchor_bottom = 1.0
+offset_left = 479.0
+offset_top = 2.0
+offset_right = 479.0
+offset_bottom = 2.0
+grow_vertical = 2
+scale = Vector2(0.25, 0.25)
+size_flags_vertical = 0
 
 [node name="Player" parent="." unique_id=1586033930 instance=ExtResource("1_hty4m")]
 position = Vector2(24, 132)

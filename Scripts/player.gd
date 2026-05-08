@@ -14,7 +14,9 @@ var dead = false
 var health = Global.player_health
 var SPEED = Global.SPEED
 
-
+func _ready() -> void:
+	_check_abilities()
+	pass
 
 func get_input():
 	var direction = Input.get_vector("Move Left", "Move Right", "Move Up", "Move Down")
@@ -51,7 +53,7 @@ func _physics_process(_delta: float) -> void:
 		Global.SPEED = 0
 func handle_health():
 	# starts i-frame timer when hit
-	if Global.player_invinsible and timer.is_stopped():
+	if Global.player_invinsible and timer.is_stopped() and attack_anim.is_playing() == false:
 		timer.start()
 		
 	health = Global.player_health
@@ -63,7 +65,7 @@ func animation_player():
 		# attack animations
 		if Input.is_action_just_pressed("Attack"):
 				attack_anim.play("Attack")
-				print("Attacking")
+				print("invincible")
 				Global.SPEED = 0
 				sword_unsheath.play()
 		# walking animations
@@ -106,6 +108,38 @@ func show_pause_menu():
 		pause_menu.visible = true
 		Global.paused = true
 
+func _check_abilities():
+	for ability_dict in Global.ability_list:
+		for ability in ability_dict:
+			if ability_dict[ability]:
+				match ability:
+					Global.quick_dash:
+						quick_dash()
+
+func quick_dash():
+	print("quickly dashing")
+
+func invincible_dash():
+	pass
+
+func fire_damage():
+	pass
+
+func ice_damage():
+	pass
+
+func lifesteal():
+	pass
+
+func aoe_damage():
+	pass
+
+func fireball():
+	pass
+
+func enemy_taming():
+	pass
+
 func _on_animated_sprite_2d_animation_finished() -> void:
 	if anim.animation != "Die":
 		can_play = true
@@ -118,6 +152,7 @@ func player():
 
 func _on_i_frames_timeout() -> void:
 	Global.player_invinsible = false
+	pass
 
 
 func _on_animation_player_animation_finished(_anim_name: StringName) -> void:

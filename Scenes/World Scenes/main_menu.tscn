@@ -2,15 +2,15 @@
 
 [ext_resource type="Script" uid="uid://4bgxwpfx0tci" path="res://Scripts/main_menu.gd" id="1_3cvmy"]
 [ext_resource type="FontFile" uid="uid://gh70p3nxahqe" path="res://Sprites/Other/boldpixels.ttf" id="1_7uv81"]
-[ext_resource type="PackedScene" uid="uid://baxqsqrn2fq0k" path="res://Scenes/Asset Scenes/options_menu.tscn" id="2_xjdvv"]
-[ext_resource type="PackedScene" uid="uid://np16bm1egwsr" path="res://Scenes/Asset Scenes/upgrade_panel.tscn" id="3_xjdvv"]
+[ext_resource type="PackedScene" uid="uid://b2b6f6gqjret7" path="res://Scenes/Asset Scenes/options_menu.tscn" id="2_xjdvv"]
+[ext_resource type="PackedScene" uid="uid://cslv8uuiyxkv7" path="res://Scenes/Asset Scenes/upgrade_panel.tscn" id="3_xjdvv"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_rhts7"]
 blend_mode = 1
 
 [sub_resource type="Animation" id="Animation_xjdvv"]
 resource_name = "LeaveUpgradeScreen"
-length = 2.0
+length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -18,10 +18,10 @@ tracks/0/path = NodePath("../../../..:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 2),
+"times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(0, -648), Vector2(0, 0)]
+"values": [Vector2(0, -6480), Vector2(0, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -30,10 +30,10 @@ tracks/1/path = NodePath("../../../../../UpgradePanel:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 2),
+"times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(0, 0), Vector2(0, 648)]
+"values": [Vector2(0, 0), Vector2(0, 6480)]
 }
 
 [sub_resource type="Animation" id="Animation_s0w8u"]
@@ -65,7 +65,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_84enj"]
 resource_name = "UpgradeAnimation"
-length = 2.0
+length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -73,10 +73,10 @@ tracks/0/path = NodePath("../../../..:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 2),
+"times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(0, 0), Vector2(0, -648)]
+"values": [Vector2(0, 0), Vector2(0, -6480)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -85,10 +85,10 @@ tracks/1/path = NodePath("../../../../../UpgradePanel:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 2),
+"times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(0, 648), Vector2(0, 0)]
+"values": [Vector2(576, 6480), Vector2(0, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ntlhr"]
@@ -113,9 +113,11 @@ visible = false
 layout_mode = 1
 
 [node name="UpgradePanel" parent="." unique_id=345639289 node_paths=PackedStringArray("update_animator") instance=ExtResource("3_xjdvv")]
+unique_name_in_owner = true
+visible = false
 layout_mode = 1
 offset_top = 648.0
-offset_bottom = 647.99976
+offset_bottom = 648.0
 update_animator = NodePath("../Main_Panel/BoxContainer/HBoxContainer/VBoxContainer/Upgrades/UpgradeAnimation")
 
 [node name="Main_Panel" type="Panel" parent="." unique_id=66757964]

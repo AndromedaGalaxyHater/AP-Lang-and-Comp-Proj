@@ -3,6 +3,7 @@ extends Control
 @onready var upgrade_anim : AnimationPlayer = %UpgradeAnimation
 @onready var main_panel = %Main_Panel
 @onready var options_menu = %"Options Menu"
+@onready var upgrade_panel = %UpgradePanel
 
 # changes scene once pressed and maybe brings to character and world chooser
 func _on_play_pressed() -> void:
@@ -13,6 +14,7 @@ func _on_play_pressed() -> void:
 
 func _on_upgrades_pressed() -> void:
 	upgrade_anim.play("UpgradeAnimation")
+	upgrade_panel.visible = true
 	print("upgrade screen coming up")
 
 

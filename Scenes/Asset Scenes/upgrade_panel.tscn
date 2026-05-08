@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://np16bm1egwsr"]
+[gd_scene format=3 uid="uid://cslv8uuiyxkv7"]
 
 [ext_resource type="Script" uid="uid://bggysjncmd4j7" path="res://Scenes/Asset Scenes/upgrade_panel.gd" id="1_gnp5v"]
 [ext_resource type="FontFile" uid="uid://gh70p3nxahqe" path="res://Sprites/Other/boldpixels.ttf" id="1_wcaau"]
@@ -63,4 +63,5 @@ theme_override_constants/outline_size = 20
 theme_override_font_sizes/font_size = 64
 text = "Return To Home Screen"
 
+[connection signal="item_clicked" from="Panel/VBoxContainer/ItemList" to="." method="_on_item_list_item_clicked"]
 [connection signal="pressed" from="Panel/VBoxContainer/ExitUpgradePanel" to="." method="_on_exit_upgrade_panel_pressed"]

@@ -4,9 +4,9 @@
 [ext_resource type="Texture2D" uid="uid://cqaj560hegbjv" path="res://Sprites/Friends/Mr. Squiggles.png" id="2_cu0cs"]
 [ext_resource type="AudioStream" uid="uid://4lg4v3e1tk8u" path="res://Audio/floraphonic-violin-lose-4-185125.mp3" id="3_b3f4a"]
 [ext_resource type="AudioStream" uid="uid://drt3s53eum6mb" path="res://Audio/creatorshome-draw-a-sword-327726.mp3" id="3_uso3q"]
-[ext_resource type="Script" uid="uid://bd381b83rofde" path="res://Scripts/sword.gd" id="4_66uuy"]
 [ext_resource type="AudioStream" uid="uid://dygu0mq5cbnpw" path="res://Audio/rip-gong-made-with-Voicemod.mp3" id="4_b3f4a"]
-[ext_resource type="Script" uid="uid://b672f64eudgtl" path="res://Scripts/progress_bar.gd" id="7_grhxo"]
+[ext_resource type="Script" uid="uid://ct5nm6pe50xpe" path="res://Scripts/aura.gd" id="6_v3x5v"]
+[ext_resource type="Script" path="res://Scripts/progress_bar.gd" id="7_grhxo"]
 [ext_resource type="PackedScene" uid="uid://c2fvmbjlyeb1h" path="res://Scenes/Asset Scenes/pause_menu.tscn" id="8_v3x5v"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dwhe3"]
@@ -302,7 +302,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.39999998, 0.6),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(1, 1), Vector2(8, 8), Vector2(0, 0)]
+"values": [Vector2(0, 0), Vector2(2, 2), Vector2(0, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -315,6 +315,30 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [0, 1]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimatedSprite2D:animation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Attack"]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AnimatedSprite2D:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.35, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0.15, 0.15), Vector2(0.2, 0.2), Vector2(0.15, 0.15)]
 }
 
 [sub_resource type="Animation" id="Animation_cu0cs"]
@@ -343,6 +367,30 @@ tracks/1/keys = {
 "update": 1,
 "values": [0]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimatedSprite2D:animation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Attack"]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AnimatedSprite2D:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.15, 0.15)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_grhxo"]
 _data = {
@@ -364,7 +412,7 @@ texture_filter = 1
 position = Vector2(0, -6)
 scale = Vector2(0.15, 0.15)
 sprite_frames = SubResource("SpriteFrames_b3xlj")
-animation = &"Down Idle"
+animation = &"Attack"
 autoplay = "Down Idle"
 flip_h = true
 
@@ -379,7 +427,13 @@ position_smoothing_speed = 10.0
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
 
+[node name="attack_immunity" type="Timer" parent="." unique_id=148016148]
+unique_name_in_owner = true
+wait_time = 10.0
+one_shot = true
+
 [node name="I-Frames" type="Timer" parent="." unique_id=1645863169]
+one_shot = true
 
 [node name="AudioListener2D" type="AudioListener2D" parent="." unique_id=294017815]
 current = true
@@ -402,10 +456,10 @@ libraries/ = SubResource("AnimationLibrary_grhxo")
 [node name="Explosion Area" type="Area2D" parent="." unique_id=1979552427]
 
 [node name="ExplosionHitbox" type="CollisionShape2D" parent="Explosion Area" unique_id=1922960009]
-position = Vector2(0, -8)
+position = Vector2(0, -5.9999995)
 scale = Vector2(8, 8)
 shape = SubResource("CircleShape2D_dwhe3")
-script = ExtResource("4_66uuy")
+script = ExtResource("6_v3x5v")
 
 [node name="HealthBar" type="ProgressBar" parent="." unique_id=2127619459]
 modulate = Color(0, 1, 0, 1)

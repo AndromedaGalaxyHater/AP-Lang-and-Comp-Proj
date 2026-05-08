@@ -94,7 +94,7 @@ func animations():
 
 # handles being attacked
 func take_damage():
-	health -= Global.sword_damage
+	health -= Global.explode_damage
 	immunity = true
 	immune_timer.start()
 	hit_sfx.play()
@@ -123,7 +123,7 @@ func _on_attack_check_body_exited(body: Node2D) -> void:
 		can_attack = false
 
 func _on_hurtbox_area_entered(area: Area2D) -> void:
-	if str(area.name) == "Sword Area" and immunity == false and health > 0:
+	if str(area.name) == "Explosion Area" and immunity == false and health > 0:
 		take_damage()
 
 func _on_immunity_timer_timeout() -> void:
