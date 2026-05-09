@@ -20,11 +20,11 @@ func _on_item_list_item_clicked(index: int, _at_position: Vector2, _mouse_button
 		Global.fire_damage = false
 	elif "ice_activated" in ability_dict and Global.ice_damage == true:
 		Global.ice_damage = false
-	elif "lifesteal" in ability_dict and Global.lifesteal == true:
+	elif "lifesteal_activated" in ability_dict and Global.lifesteal == true:
 		Global.lifesteal = false
 	elif "aoe_activated" in ability_dict and Global.aoe_spell == true:
 		Global.aoe_spell = false
-	elif "fireball" in ability_dict and Global.fireball == true:
+	elif "fireball_activated" in ability_dict and Global.fireball == true:
 		Global.fireball = false
 	elif "taming_activated" in ability_dict and Global.enemy_taming == true:
 		Global.enemy_taming = false
@@ -44,11 +44,11 @@ func _on_item_list_item_clicked(index: int, _at_position: Vector2, _mouse_button
 		print("Ice on Fire off")
 		wiggog_ywrath_smite_the_andromeda_galaxy_please.deselect(index-1)
 		Global.fire_damage = false
-	elif "lifesteal" in ability_dict:
+	elif "lifesteal_activated" in ability_dict:
 		Global.lifesteal = true
 	elif "aoe_activated" in ability_dict:
-		Global.lifesteal = true
-	elif "fireball" in ability_dict:
+		Global.aoe_spell = true
+	elif "fireball_activated" in ability_dict:
 		Global.fireball = true
 	elif "taming_activated" in ability_dict:
 		Global.enemy_taming = true

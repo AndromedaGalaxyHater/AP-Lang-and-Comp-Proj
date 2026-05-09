@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b68sxmudnyy4l" path="res://Scripts/player.gd" id="1_qv8xh"]
 [ext_resource type="Texture2D" uid="uid://cqaj560hegbjv" path="res://Sprites/Friends/Mr. Squiggles.png" id="2_cu0cs"]
+[ext_resource type="PackedScene" uid="uid://d05w1x0wrdhs8" path="res://fireball.tscn" id="2_dwhe3"]
 [ext_resource type="AudioStream" uid="uid://4lg4v3e1tk8u" path="res://Audio/floraphonic-violin-lose-4-185125.mp3" id="3_b3f4a"]
 [ext_resource type="AudioStream" uid="uid://drt3s53eum6mb" path="res://Audio/creatorshome-draw-a-sword-327726.mp3" id="3_uso3q"]
 [ext_resource type="AudioStream" uid="uid://dygu0mq5cbnpw" path="res://Audio/rip-gong-made-with-Voicemod.mp3" id="4_b3f4a"]
@@ -405,6 +406,7 @@ _data = {
 [node name="Player" type="CharacterBody2D" unique_id=1586033930]
 y_sort_enabled = true
 script = ExtResource("1_qv8xh")
+fireball_projectile = ExtResource("2_dwhe3")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=993955763]
 y_sort_enabled = true

@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://d05w1x0wrdhs8"]
+
+[ext_resource type="Script" uid="uid://y4kk4qdw4ulu" path="res://fireball.gd" id="1_olwj8"]
+[ext_resource type="Texture2D" uid="uid://cqaj560hegbjv" path="res://Sprites/Friends/Mr. Squiggles.png" id="1_sf4mh"]
+[ext_resource type="PackedScene" uid="uid://c5hpau4nwj6c0" path="res://Scenes/Asset Scenes/Player.tscn" id="2_wdani"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_sf4mh"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_olwj8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wdani"]
+atlas = ExtResource("1_sf4mh")
+region = Rect2(320, 480, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nix7o"]
+atlas = ExtResource("1_sf4mh")
+region = Rect2(480, 480, 160, 160)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_m4vqi"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wdani")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nix7o")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Fireball" type="CharacterBody2D" unique_id=756794129]
+script = ExtResource("1_olwj8")
+player = ExtResource("2_wdani")
+
+[node name="Fireball Hitbox" type="CollisionShape2D" parent="." unique_id=1943749862]
+shape = SubResource("CircleShape2D_sf4mh")
+
+[node name="fireball area" type="Area2D" parent="." unique_id=236497537]
+
+[node name="area shape" type="CollisionShape2D" parent="fireball area" unique_id=529397615]
+shape = SubResource("CircleShape2D_olwj8")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=488228143]
+sprite_frames = SubResource("SpriteFrames_m4vqi")
+autoplay = "default"

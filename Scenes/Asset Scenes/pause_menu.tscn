@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://c2fvmbjlyeb1h"]
 
-[ext_resource type="Script" path="res://Scenes/Asset Scenes/pause_menu.gd" id="1_xxvbl"]
-[ext_resource type="PackedScene" uid="uid://b2b6f6gqjret7" path="res://Scenes/Asset Scenes/options_menu.tscn" id="3_rne34"]
+[ext_resource type="Script" uid="uid://bok44y1lo64k6" path="res://Scenes/Asset Scenes/pause_menu.gd" id="1_xxvbl"]
+[ext_resource type="PackedScene" uid="uid://baxqsqrn2fq0k" path="res://Scenes/Asset Scenes/options_menu.tscn" id="3_rne34"]
 
 [node name="Pause Menu" type="Control" unique_id=1789256309 node_paths=PackedStringArray("vbox")]
 z_index = 20
