@@ -2,11 +2,7 @@
 
 [ext_resource type="Script" uid="uid://y4kk4qdw4ulu" path="res://fireball.gd" id="1_olwj8"]
 [ext_resource type="Texture2D" uid="uid://cqaj560hegbjv" path="res://Sprites/Friends/Mr. Squiggles.png" id="1_sf4mh"]
-[ext_resource type="PackedScene" uid="uid://c5hpau4nwj6c0" path="res://Scenes/Asset Scenes/Player.tscn" id="2_wdani"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_sf4mh"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_olwj8"]
+[ext_resource type="Texture2D" uid="uid://dfxsnvf1xs4om" path="res://Sprites/Other/fireball.png" id="3_wdani"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wdani"]
 atlas = ExtResource("1_sf4mh")
@@ -15,6 +11,34 @@ region = Rect2(320, 480, 160, 160)
 [sub_resource type="AtlasTexture" id="AtlasTexture_nix7o"]
 atlas = ExtResource("1_sf4mh")
 region = Rect2(480, 480, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m4vqi"]
+atlas = ExtResource("3_wdani")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lk87q"]
+atlas = ExtResource("3_wdani")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gveuj"]
+atlas = ExtResource("3_wdani")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_smijy"]
+atlas = ExtResource("3_wdani")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l1q1f"]
+atlas = ExtResource("3_wdani")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2cr5o"]
+atlas = ExtResource("3_wdani")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nymw6"]
+atlas = ExtResource("3_wdani")
+region = Rect2(0, 64, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_m4vqi"]
 animations = [{
@@ -25,23 +49,61 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_nix7o")
 }],
+"loop": false,
+"name": &"Explode",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m4vqi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lk87q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gveuj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_smijy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l1q1f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2cr5o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nymw6")
+}],
 "loop": true,
-"name": &"default",
+"name": &"Move",
 "speed": 5.0
 }]
 
-[node name="Fireball" type="CharacterBody2D" unique_id=756794129]
-script = ExtResource("1_olwj8")
-player = ExtResource("2_wdani")
+[sub_resource type="CircleShape2D" id="CircleShape2D_sf4mh"]
 
-[node name="Fireball Hitbox" type="CollisionShape2D" parent="." unique_id=1943749862]
+[sub_resource type="CircleShape2D" id="CircleShape2D_olwj8"]
+
+[node name="Fireball" type="CharacterBody2D" unique_id=756794129]
+scale = Vector2(0.25, 0.25)
+script = ExtResource("1_olwj8")
+
+[node name="fireball_animations" type="AnimatedSprite2D" parent="." unique_id=488228143]
+unique_name_in_owner = true
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_m4vqi")
+animation = &"Explode"
+autoplay = "Move"
+
+[node name="Fireball Shape" type="CollisionShape2D" parent="." unique_id=1943749862]
 shape = SubResource("CircleShape2D_sf4mh")
+disabled = true
 
 [node name="fireball area" type="Area2D" parent="." unique_id=236497537]
 
 [node name="area shape" type="CollisionShape2D" parent="fireball area" unique_id=529397615]
+scale = Vector2(8, 8)
 shape = SubResource("CircleShape2D_olwj8")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=488228143]
-sprite_frames = SubResource("SpriteFrames_m4vqi")
-autoplay = "default"
+[connection signal="animation_finished" from="fireball_animations" to="." method="_on_fireball_animations_animation_finished"]
+[connection signal="body_entered" from="fireball area" to="." method="_on_fireball_area_body_entered"]

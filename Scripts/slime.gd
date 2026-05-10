@@ -93,8 +93,11 @@ func animations():
 				anim.flip_h = true
 
 # handles being attacked
-func take_damage():
-	health -= Global.explode_damage
+func take_damage(type):
+	if type == "explosion":
+		health -= Global.explode_damage
+	elif type == "fireball":
+		health -= Global.fireball_damage
 	immunity = true
 	immune_timer.start()
 	hit_sfx.play()
@@ -124,7 +127,7 @@ func _on_attack_check_body_exited(body: Node2D) -> void:
 
 func _on_hurtbox_area_entered(area: Area2D) -> void:
 	if str(area.name) == "Explosion Area" and immunity == false and health > 0:
-		take_damage()
+		take_damage("explosion")
 
 func _on_immunity_timer_timeout() -> void:
 	immunity = false
@@ -141,3 +144,6 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 
 func _on_velocity_timer_timeout() -> void:
 	velocity_mod = 1
+
+func enemy():
+	pass

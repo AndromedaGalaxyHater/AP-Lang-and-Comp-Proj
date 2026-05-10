@@ -41,6 +41,9 @@ func _ready() -> void:
 func get_input():
 	var direction = Input.get_vector("Move Left", "Move Right", "Move Up", "Move Down")
 	velocity = direction * Global.SPEED * velocity_mod
+	Global.player_x = position.x
+	Global.player_y = position.y
+	Global.player_velocity = velocity/velocity_mod
 
 func sprint():
 	if Input.is_action_pressed("Sprint"):

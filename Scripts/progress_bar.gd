@@ -7,3 +7,4 @@ func _physics_process(_delta: float) -> void:
 	health = Global.player_health
 	self.value = health
 	self.max_value = max_health
+	

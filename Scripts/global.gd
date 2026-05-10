@@ -13,6 +13,12 @@ var SPEED : int = 100
 var BASE_SPEED : int = 100
 var paused : bool = false
 
+
+var fireball_damage : int = 10
+
+var player_velocity : Vector2
+var player_x : float = 0.0
+var player_y : float = 0.0
 # different abilities and the dictionary containing all of their data.
 var quick_dash : bool = false
 var invincible_dash : bool = false
