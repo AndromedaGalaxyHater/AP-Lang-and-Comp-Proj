@@ -21,7 +21,7 @@ func _on_health_increase_pressed() -> void:
 	Global.paused = false
 
 func _on_damage_increase_pressed() -> void:
-	Global.explode_damage *= 2
+	Global.damage_mod += 5
 	self.visible = false
 	Global.paused = false
 

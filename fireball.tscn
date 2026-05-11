@@ -81,18 +81,19 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_sf4mh"]
+radius = 5.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_olwj8"]
+radius = 9.333334
 
 [node name="Fireball" type="CharacterBody2D" unique_id=756794129]
-scale = Vector2(0.25, 0.25)
 script = ExtResource("1_olwj8")
 
 [node name="fireball_animations" type="AnimatedSprite2D" parent="." unique_id=488228143]
 unique_name_in_owner = true
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_m4vqi")
-animation = &"Explode"
+animation = &"Move"
 autoplay = "Move"
 
 [node name="Fireball Shape" type="CollisionShape2D" parent="." unique_id=1943749862]
@@ -102,7 +103,7 @@ disabled = true
 [node name="fireball area" type="Area2D" parent="." unique_id=236497537]
 
 [node name="area shape" type="CollisionShape2D" parent="fireball area" unique_id=529397615]
-scale = Vector2(8, 8)
+scale = Vector2(0.6, 0.6)
 shape = SubResource("CircleShape2D_olwj8")
 
 [connection signal="animation_finished" from="fireball_animations" to="." method="_on_fireball_animations_animation_finished"]

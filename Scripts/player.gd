@@ -43,7 +43,7 @@ func get_input():
 	velocity = direction * Global.SPEED * velocity_mod
 	Global.player_x = position.x
 	Global.player_y = position.y
-	Global.player_velocity = velocity/velocity_mod
+	Global.player_direction = direction
 
 func sprint():
 	if Input.is_action_pressed("Sprint"):
@@ -197,7 +197,7 @@ func lifesteal():
 	print("can steal life")
 	if attack_anim.is_playing():
 		print("stealing life")
-		Global.player_health += Global.explode_damage * lifesteal_percent
+		Global.player_health += (Global.explode_base_damage + Global.damage_mod) * lifesteal_percent
 
 func aoe_damage():
 	print("aoe_damage")
