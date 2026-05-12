@@ -53,4 +53,3 @@ func _on_item_list_item_clicked(index: int, _at_position: Vector2, _mouse_button
 	elif "taming_activated" in ability_dict:
 		Global.enemy_taming = true
 		print("taming_activated")
-	

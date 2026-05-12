@@ -4,12 +4,17 @@ extends CharacterBody2D
 @onready var anim : AnimatedSprite2D = %fireball_animations
 
 var FIREBALL_SPEED = 150
+var last_dir : Vector2 = Vector2(0,1)
 
 func _ready() -> void:
 	self.position.x = Global.player_x
 	self.position.y = Global.player_y
 	var direction = Global.player_direction
 	velocity = direction * FIREBALL_SPEED
+	if direction != Vector2(0,0):
+		last_dir = direction
+	if velocity == Vector2(0,0):
+		velocity = last_dir
 	print(direction)
 	if direction == Vector2(-1,0):
 		anim.flip_h = true
@@ -22,16 +27,16 @@ func _ready() -> void:
 	elif direction == Vector2 (0,1):
 		anim.rotation = 90
 	elif direction.x > 0 and direction.y < 0:
-		anim.rotation = 45
+		anim.rotation = -45
 		anim.flip_h = false
 	elif direction.x < 0 and direction.y < 0:
-		anim.rotation = 135
+		anim.rotation = 45
 		anim.flip_h = true
 	elif direction.x < 0 and direction.y > 0:
-		anim.rotation = 135
+		anim.rotation = -45
 		anim.flip_h = true
 	elif direction.x > 0 and direction.y > 0:
-		anim.rotation = -45
+		anim.rotation = 45
 		anim.flip_h = false
 
 

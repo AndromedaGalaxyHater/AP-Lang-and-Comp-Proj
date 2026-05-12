@@ -5,17 +5,7 @@ extends Control
 @onready var options_menu = %"Options Menu"
 @onready var upgrade_panel = %UpgradePanel
 
-func _ready() -> void:
-	# removes abilities when you enter main menu
-	Global.quick_dash = false
-	Global.invincible_dash = false
-	Global.fire_damage = false
-	Global.ice_damage = false
-	Global.lifesteal = false
-	Global.aoe_spell = false
-	Global.fireball = false
-	Global.enemy_taming = false
-	
+
 # changes scene once pressed and maybe brings to character and world chooser
 func _on_play_pressed() -> void:
 	Global.paused = false
