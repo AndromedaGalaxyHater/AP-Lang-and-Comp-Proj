@@ -13,8 +13,8 @@ func _ready() -> void:
 	velocity = direction * FIREBALL_SPEED
 	if direction != Vector2(0,0):
 		last_dir = direction
-	if velocity == Vector2(0,0):
-		velocity = last_dir
+	if direction == Vector2(0,0):
+		velocity = last_dir * FIREBALL_SPEED
 	print(direction)
 	if direction == Vector2(-1,0):
 		anim.flip_h = true
