@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://y4kk4qdw4ulu" path="res://fireball.gd" id="1_olwj8"]
 [ext_resource type="Texture2D" uid="uid://cqaj560hegbjv" path="res://Sprites/Friends/Mr. Squiggles.png" id="1_sf4mh"]
 [ext_resource type="Texture2D" uid="uid://dfxsnvf1xs4om" path="res://Sprites/Other/fireball.png" id="3_wdani"]
+[ext_resource type="AudioStream" uid="uid://d2bl043f6x26d" path="res://Audio/Explosion.mp3" id="4_nix7o"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wdani"]
 atlas = ExtResource("1_sf4mh")
@@ -106,5 +107,9 @@ disabled = true
 scale = Vector2(0.6, 0.6)
 shape = SubResource("CircleShape2D_olwj8")
 
-[connection signal="animation_finished" from="fireball_animations" to="." method="_on_fireball_animations_animation_finished"]
+[node name="Explosion Sound" type="AudioStreamPlayer2D" parent="." unique_id=1772135288]
+unique_name_in_owner = true
+stream = ExtResource("4_nix7o")
+
 [connection signal="body_entered" from="fireball area" to="." method="_on_fireball_area_body_entered"]
+[connection signal="finished" from="Explosion Sound" to="." method="_on_explosion_sound_finished"]

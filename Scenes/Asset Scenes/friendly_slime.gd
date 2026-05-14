@@ -6,8 +6,10 @@ extends CharacterBody2D
 @onready var hit_sfx = $HitSFX
 @onready var attack_sfx = $AttackSFX
 @onready var velocity_timer = $"velocity timer"
+@onready var cooldown_timer = %"Hit Cooldown"
 var SPEED : int = 25
 var player = null
+var enemy = null
 var can_attack : bool = false
 var slime_dir : String = "Down"
 var health : int = 15
@@ -15,6 +17,7 @@ var immunity : bool = false
 var can_animate : bool = false
 var velocity_mod : int = 1
 var enemy_exp : int = 50
+var timer_cooldown = false
 
 func _physics_process(_delta: float) -> void:
 	if !Global.paused:
@@ -22,8 +25,14 @@ func _physics_process(_delta: float) -> void:
 		animations()
 		get_dir()
 		handle_health()
-		if player != null and Global.player_is_dead == false:
+		if enemy != null and Global.player_is_dead == false:
+			var direction = global_position.direction_to(enemy.global_position)
+			velocity = direction * SPEED * velocity_mod
+			velocity_mod = 1
+			move_and_slide()
+		elif player != null and Global.player_is_dead == false:
 			var direction = global_position.direction_to(player.global_position)
+			velocity_mod = 2
 			velocity = direction * SPEED * velocity_mod
 			move_and_slide()
 
@@ -39,9 +48,10 @@ func handle_health():
 
 # handles attacking
 func attack():
-	if can_attack and Global.player_health > 0 and Global.player_invinsible == false:
-		Global.player_health -= 5
-		Global.player_invinsible = true
+	if can_attack and Global.player_health > 0 and enemy != null and !timer_cooldown:
+		enemy.take_damage("friendly slime")
+		timer_cooldown = true
+		cooldown_timer.start()
 		attack_sfx.play()
 
 # finds the direction of the slime
@@ -98,8 +108,6 @@ func take_damage(type):
 		health -= Global.explode_base_damage + Global.damage_mod
 	elif type == "fireball":
 		health -= Global.fireball_base_damage + Global.damage_mod
-	elif type == "friendly slime":
-		health -= Global.friend_slime_base_damage + Global.tamed_damge_mod
 	immunity = true
 	immune_timer.start()
 	hit_sfx.play()
@@ -111,25 +119,27 @@ func take_damage(type):
 func _on_detector_body_entered(body: Node2D) -> void:
 	if body.has_method("player"):
 		player = body
-
+	if body.has_method("enemy"):
+		enemy = body
+	
 # says when player leaves
 func _on_detector_body_exited(body: Node2D) -> void:
-	if body.has_method("player"):
-		player = null
+	if body.has_method("enemy"):
+		enemy = null
+	
 
 # says when player enters attack range
 func _on_attack_check_body_entered(body: Node2D) -> void:
-	if body.has_method("player"):
+	if body.has_method("enemy"):
 		can_attack = true
 
 # says when player leaves attack range
 func _on_attack_check_body_exited(body: Node2D) -> void:
-	if body.has_method("player"):
+	if body.has_method("enemy"):
 		can_attack = false
 
-func _on_hurtbox_area_entered(area: Area2D) -> void:
-	if str(area.name) == "Explosion Area" and immunity == false and health > 0:
-		take_damage("explosion")
+func _on_hurtbox_area_entered(_area: Area2D) -> void:
+	pass
 
 func _on_immunity_timer_timeout() -> void:
 	immunity = false
@@ -137,15 +147,18 @@ func _on_immunity_timer_timeout() -> void:
 
 
 func _on_animated_sprite_2d_animation_finished() -> void:
-	if anim.animation == "Spawn In":
+	if anim.animation == "Turn":
 		can_animate = true
 	if anim.animation == "Die":
-		Global.player_experience += enemy_exp
 		queue_free()
 
 
 func _on_velocity_timer_timeout() -> void:
 	velocity_mod = 1
 
-func enemy():
+func friend():
 	pass
+
+
+func _on_hit_cooldown_timeout() -> void:
+	timer_cooldown = false

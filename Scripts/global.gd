@@ -14,6 +14,8 @@ var BASE_SPEED : int = 100
 var paused : bool = false
 var damage_mod : int = 0
 
+var tamed_damge_mod : int = 0
+var friend_slime_base_damage : int = 5
 var fireball_base_damage : int = 10
 
 var player_direction : Vector2
