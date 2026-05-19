@@ -666,15 +666,15 @@ animation = &"Turn"
 autoplay = "Turn"
 
 [node name="Hitbox" type="CollisionShape2D" parent="." unique_id=1358852703]
-visible = false
+texture_filter = 1
 position = Vector2(0, -1)
 shape = SubResource("CircleShape2D_bratd")
+disabled = true
 
 [node name="Hurtbox" type="Area2D" parent="." unique_id=650849066]
 position = Vector2(0, -1)
 
 [node name="Damage Check" type="CollisionShape2D" parent="Hurtbox" unique_id=449558993]
-visible = false
 shape = SubResource("CircleShape2D_5b0gg")
 debug_color = Color(0.5847378, 0.5310082, 0.39872333, 0.41960785)
 
@@ -682,7 +682,6 @@ debug_color = Color(0.5847378, 0.5310082, 0.39872333, 0.41960785)
 position = Vector2(0, 2)
 
 [node name="Detection Range" type="CollisionShape2D" parent="Detector" unique_id=2023484288]
-visible = false
 position = Vector2(0, -3)
 shape = SubResource("CircleShape2D_hhmt3")
 
@@ -690,7 +689,6 @@ shape = SubResource("CircleShape2D_hhmt3")
 position = Vector2(0, 2)
 
 [node name="Attack Range" type="CollisionShape2D" parent="Attack Check" unique_id=1124705707]
-visible = false
 position = Vector2(0, -3)
 shape = SubResource("CircleShape2D_eajb8")
 debug_color = Color(0.64836955, 0.4772048, 0.5488106, 0.41960785)

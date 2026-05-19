@@ -12,6 +12,7 @@ extends CharacterBody2D
 @onready var DeathSFX = $DieSFX
 @onready var Dash_Wait = %Dash_Timer
 @onready var dashing_timer = %"Dash Immunity"
+var auto_pause = false
 var dashing = false
 var anim_dir : String = "Down"
 var dash_cooldown = false
@@ -32,11 +33,25 @@ var taming_unlocked = false
 
 func _ready() -> void:
 	_check_abilities()
+	reset_levels()
 	Global.player_health = Global.max_player_health
 	Global.player_is_dead = false
 	velocity_mod = 1
 	Global.SPEED = Global.BASE_SPEED
 	pass
+
+# resets buffs when entering game from home screen
+func reset_levels():
+	# resets health
+	Global.player_health = Global.health_reset
+	Global.max_player_health = Global.health_reset
+	# resets speeds
+	Global.BASE_SPEED = Global.speed_reset
+	Global.SPEED = Global.speed_reset
+	# resets damage
+	Global.damage_mod = Global.damage_mod_reset
+	Global.fireball_damage_mod = Global.fireball_mod_reset
+	Global.tamed_damge_mod = Global.tame_mod_reset
 
 func get_input():
 	var direction = Input.get_vector("Move Left", "Move Right", "Move Up", "Move Down")
@@ -49,7 +64,6 @@ func sprint():
 	if Input.is_action_pressed("Sprint"):
 		velocity_mod = 1.5
 		can_play = true
-		Global.SPEED = Global.BASE_SPEED
 	elif dashing == false:
 		velocity_mod = 1
 
@@ -72,6 +86,7 @@ func die():
 		dead = true
 		Global.player_is_dead = true
 		DeathMusic.play()
+		auto_pause = true
 
 func _physics_process(_delta: float) -> void:
 	if !Global.paused:
@@ -115,7 +130,19 @@ func animation_player():
 	if can_play and dead == false:
 		# attack animations
 		if Input.is_action_just_pressed("Attack"):
-				attack_anim.play("Attack")
+				match anim_dir:
+					"Down":
+						attack_anim.play("Front Attack")
+						anim.flip_h = false
+					"Up":
+						attack_anim.play("Up Attack")
+						anim.flip_h = false
+					"Right":
+						attack_anim.play("Side Attack")
+						anim.flip_h = true
+					"Left":
+						attack_anim.play("Side Attack")
+						anim.flip_h = false
 				print("invincible")
 				Global.SPEED = 0
 				sword_unsheath.play()
@@ -130,11 +157,11 @@ func animation_player():
 			anim_dir = "Up"
 		elif Input.is_action_pressed("Move Right"):
 			anim.play("Side Walk")
-			anim.flip_h = false
+			anim.flip_h = true
 			anim_dir = "Right"
 		elif Input.is_action_pressed("Move Left"):
 			anim.play("Side Walk")
-			anim.flip_h = true
+			anim.flip_h = false
 			anim_dir = "Left"
 		# idle animations
 		elif anim_dir == "Down":
@@ -153,7 +180,7 @@ func check_anim():
 			can_play = false
 
 func show_pause_menu():
-	if Input.is_action_just_pressed("Pause"):
+	if Input.is_action_just_pressed("Pause") or auto_pause:
 		var pause_menu = %"Pause Menu"
 		pause_menu.visible = true
 		Global.paused = true
@@ -179,9 +206,7 @@ func _check_abilities():
 		taming_unlocked = true
 
 func quick_dash():
-	print("BBBBBBB")
 	Dash_Wait.wait_time -= 0.5
-	print("quickly dashing")
 
 func fire_damage():
 	
@@ -192,11 +217,7 @@ func ice_damage():
 	pass
 
 func lifesteal():
-	print("lifesteal is", lifesteal_unlocked)
-	print("aoe is", aoe_unlocked)
-	print("can steal life")
 	if attack_anim.is_playing():
-		print("stealing life")
 		Global.player_health += (Global.explode_base_damage + Global.damage_mod) * lifesteal_percent
 
 func aoe_damage():
@@ -204,16 +225,16 @@ func aoe_damage():
 	pass
 
 func fireball():
-	if Input.is_action_just_pressed("Fire Fireball"):
-		print("shoot fireball")
-		var new_fireball = fireball_projectile.instantiate()
-		add_sibling(new_fireball)
+	if !dead:
+		if Input.is_action_just_pressed("Fire Fireball"):
+			var new_fireball = fireball_projectile.instantiate()
+			add_sibling(new_fireball)
 
 func enemy_taming():
 	pass
 
 func _on_animated_sprite_2d_animation_finished() -> void:
-	if anim.animation != "D!e":
+	if anim.animation != "Die":
 		can_play = true
 		Global.SPEED = Global.BASE_SPEED
 

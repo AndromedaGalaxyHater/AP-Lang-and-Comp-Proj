@@ -95,7 +95,7 @@ func animations():
 # handles being attacked
 func take_damage(type):
 	if type == "explosion":
-		health -= Global.explode_base_damage + Global.damage_mod
+		health -= Global.explode_base_damage + Global.fireball_damage_mod
 	elif type == "fireball":
 		health -= Global.fireball_base_damage + Global.damage_mod
 	elif type == "friendly slime":

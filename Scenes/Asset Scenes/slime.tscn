@@ -601,7 +601,6 @@ stream_2/stream = ExtResource("6_ej4xx")
 [node name="Slime" type="CharacterBody2D" unique_id=356267638]
 y_sort_enabled = true
 script = ExtResource("1_eajb8")
-BASE_SPEED = null
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1597861152]
 y_sort_enabled = true

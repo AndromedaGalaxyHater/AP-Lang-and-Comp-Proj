@@ -1,12 +1,25 @@
 extends Control
 
 @export var update_animator : AnimationPlayer
+@export var item_list : ItemList
 
+func _ready() -> void:
+	reset_upgrades()
+	
+
+func reset_upgrades():
+	Global.quick_dash = false
+	Global.invincible_dash = false
+	Global.fire_damage = false
+	Global.ice_damage = false
+	Global.lifesteal = false
+	Global.aoe_spell = false
+	Global.fireball = false
+	Global.enemy_taming = false
 
 func _on_exit_upgrade_panel_pressed() -> void:
 	update_animator.play("LeaveUpgradeScreen")
 	self.visible = false
-
 
 func _on_item_list_item_clicked(index: int, _at_position: Vector2, _mouse_button_index: int) -> void:
 	var ability_dict = Global.ability_list.values()[index]

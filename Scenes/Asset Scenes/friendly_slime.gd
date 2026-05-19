@@ -31,10 +31,15 @@ func _physics_process(_delta: float) -> void:
 			velocity_mod = 1
 			move_and_slide()
 		elif player != null and Global.player_is_dead == false:
+			if self.global_position.round() == player.global_position.round():
+				SPEED = 0
+			else: 
+				SPEED = BASE_SPEED
 			var direction = global_position.direction_to(player.global_position)
 			velocity_mod = 2
 			velocity = direction * SPEED * velocity_mod
 			move_and_slide()
+			print(global_position)
 
 # handles health
 func handle_health():

@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://33xprg5tdhqw" path="res://Scenes/Asset Scenes/Exp Bar.tscn" id="9_8uxqj"]
 [ext_resource type="PackedScene" uid="uid://bjy4arkfco4da" path="res://Scenes/Asset Scenes/level_up_screen.tscn" id="10_e2vx1"]
 [ext_resource type="PackedScene" uid="uid://dv5uiqtei83w4" path="res://Scenes/Asset Scenes/friendly_slime.tscn" id="11_bkuri"]
+[ext_resource type="PackedScene" uid="uid://dkemytferrxqp" path="res://Scenes/Asset Scenes/death_slime.tscn" id="12_cqcj2"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0jl5p"]
 texture = ExtResource("1_82k2o")
@@ -532,3 +533,6 @@ experience_bar = NodePath("../CanvasLayer/Experience Bar")
 
 [node name="Friendly Slime" parent="." unique_id=116079345 instance=ExtResource("11_bkuri")]
 position = Vector2(-38, 99)
+
+[node name="Death Slime" parent="." unique_id=1031495244 instance=ExtResource("12_cqcj2")]
+position = Vector2(-45, 124)

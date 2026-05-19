@@ -594,7 +594,7 @@ streams_count = 1
 stream_0/stream = ExtResource("5_fce6v")
 
 [node name="Death Slime" type="CharacterBody2D" unique_id=356267638]
-modulate = Color(0, 0, 0, 1)
+modulate = Color(0.19607843, 0.19607843, 0.19607843, 1)
 y_sort_enabled = true
 script = ExtResource("1_qyquj")
 
@@ -609,6 +609,7 @@ autoplay = "Spawn In"
 [node name="Hitbox" type="CollisionShape2D" parent="." unique_id=1358852703]
 position = Vector2(0, -1)
 shape = SubResource("CircleShape2D_bratd")
+disabled = true
 
 [node name="Hurtbox" type="Area2D" parent="." unique_id=650849066]
 position = Vector2(0, -1)
@@ -622,6 +623,7 @@ position = Vector2(0, 2)
 
 [node name="Detection Range" type="CollisionShape2D" parent="Detector" unique_id=2023484288]
 position = Vector2(0, -3)
+scale = Vector2(5, 5)
 shape = SubResource("CircleShape2D_hhmt3")
 
 [node name="Attack Check" type="Area2D" parent="." unique_id=544009755]

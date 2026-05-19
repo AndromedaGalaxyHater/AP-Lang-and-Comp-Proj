@@ -1,16 +1,16 @@
 extends CharacterBody2D
 
-@export var BASE_SPEED : int = 50
+@export var BASE_SPEED : int = 5
 @onready var anim = $AnimatedSprite2D
 @onready var immune_timer = $"Immunity Timer"
 @onready var hit_sfx = $HitSFX
 @onready var attack_sfx = $AttackSFX
 @onready var velocity_timer = $"velocity timer"
-var SPEED : int = 25
+var SPEED : int = 5
 var player = null
 var can_attack : bool = false
 var slime_dir : String = "Down"
-var health : int = 15
+var health : int = 250
 var immunity : bool = false
 var can_animate : bool = false
 var velocity_mod : int = 1
@@ -113,9 +113,8 @@ func _on_detector_body_entered(body: Node2D) -> void:
 		player = body
 
 # says when player leaves
-func _on_detector_body_exited(body: Node2D) -> void:
-	if body.has_method("player"):
-		player = null
+func _on_detector_body_exited(_body: Node2D) -> void:
+	pass
 
 # says when player enters attack range
 func _on_attack_check_body_entered(body: Node2D) -> void:
@@ -123,7 +122,7 @@ func _on_attack_check_body_entered(body: Node2D) -> void:
 		can_attack = true
 
 # says when player leaves attack range
-func _on_attack_check_body_exited(body: Node2D) -> void:
+func _on_attack_check_body_exited(_body: Node2D) -> void:
 	pass
 
 func _on_hurtbox_area_entered(area: Area2D) -> void:
@@ -146,5 +145,5 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 func _on_velocity_timer_timeout() -> void:
 	velocity_mod = 1
 
-func enemy():
+func eternal_enemy():
 	pass

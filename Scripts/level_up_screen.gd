@@ -15,7 +15,7 @@ func level_up():
 
 func _on_health_increase_pressed() -> void:
 	Global.max_player_health += 50
-	Global.player_health += 50
+	Global.player_health = Global.max_player_health
 	self.visible = false
 	print(Global.player_health)
 	Global.paused = false
