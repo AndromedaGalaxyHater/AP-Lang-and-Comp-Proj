@@ -669,7 +669,6 @@ autoplay = "Turn"
 texture_filter = 1
 position = Vector2(0, -1)
 shape = SubResource("CircleShape2D_bratd")
-disabled = true
 
 [node name="Hurtbox" type="Area2D" parent="." unique_id=650849066]
 position = Vector2(0, -1)
@@ -694,7 +693,7 @@ shape = SubResource("CircleShape2D_eajb8")
 debug_color = Color(0.64836955, 0.4772048, 0.5488106, 0.41960785)
 
 [node name="Immunity Timer" type="Timer" parent="." unique_id=2084980385]
-wait_time = 0.2
+wait_time = 1.5
 one_shot = true
 
 [node name="HitSFX" type="AudioStreamPlayer2D" parent="." unique_id=1810572838]
@@ -706,7 +705,7 @@ stream = SubResource("AudioStreamRandomizer_c4hqv")
 
 [node name="Hit Cooldown" type="Timer" parent="." unique_id=490973347]
 unique_name_in_owner = true
-wait_time = 2.0
+wait_time = 1.25
 
 [node name="velocity timer" type="Timer" parent="." unique_id=1820433420]
 wait_time = 0.25

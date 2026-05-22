@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://crkfo2i3ebjw1"]
+
+[ext_resource type="Texture2D" uid="uid://dfxsnvf1xs4om" path="res://Sprites/Other/fireball.png" id="1_hh10o"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a5rmp"]
+atlas = ExtResource("1_hh10o")
+region = Rect2(38, 39, 15, 17)
+
+[node name="Fireball Damage Up" type="Button" unique_id=1954438462]
+texture_filter = 1
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Increase Fireball Damage"
+icon = SubResource("AtlasTexture_a5rmp")

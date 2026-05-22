@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://dxow55vupourg"]
+
+[ext_resource type="Texture2D" uid="uid://dpl0x2sw8luw7" path="res://Sprites/Other/Speed_Boost.png" id="1_dvkq8"]
+
+[node name="Speed Up" type="Button" unique_id=1399963643]
+texture_filter = 1
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Increase Speed"
+icon = ExtResource("1_dvkq8")

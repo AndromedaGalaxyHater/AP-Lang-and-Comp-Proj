@@ -5,8 +5,14 @@ var speed_reset : int = 100
 var damage_mod_reset : int = 0
 var tame_mod_reset : int = 0
 var fireball_mod_reset : int = 0
+var experience_reset : int = 0
+var max_exp_reset : int = 100
+var block_reset : int = 0
+var exp_reset : float = 1
+var level_reset : int = 0
 
-
+var exp_mult : float = 1
+var player_block : int = 0
 var max_player_health : int = 50
 var player_health : float = 50
 var player_max_health : int = 50
@@ -65,3 +71,7 @@ var ability_list : Dictionary = {
 		"taming_selected" : false, "taming_activated" : enemy_taming
 	}
 }
+
+
+# enemy damage ammounts
+var slime_damage : int = 5

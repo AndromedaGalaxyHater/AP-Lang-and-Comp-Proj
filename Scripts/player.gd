@@ -12,6 +12,8 @@ extends CharacterBody2D
 @onready var DeathSFX = $DieSFX
 @onready var Dash_Wait = %Dash_Timer
 @onready var dashing_timer = %"Dash Immunity"
+@onready var health_bar : HBoxContainer = $"CanvasLayer/Health Bar"
+var block = Global.player_block
 var auto_pause = false
 var dashing = false
 var anim_dir : String = "Down"
@@ -52,6 +54,8 @@ func reset_levels():
 	Global.damage_mod = Global.damage_mod_reset
 	Global.fireball_damage_mod = Global.fireball_mod_reset
 	Global.tamed_damge_mod = Global.tame_mod_reset
+	
+	Global.player_level = Global.level_reset
 
 func get_input():
 	var direction = Input.get_vector("Move Left", "Move Right", "Move Up", "Move Down")
@@ -86,7 +90,6 @@ func die():
 		dead = true
 		Global.player_is_dead = true
 		DeathMusic.play()
-		auto_pause = true
 
 func _physics_process(_delta: float) -> void:
 	if !Global.paused:
@@ -98,7 +101,9 @@ func _physics_process(_delta: float) -> void:
 		animation_player()
 		check_anim()
 		handle_health()
-		
+		experience_bar.visible = true
+		health_bar.visible = true
+
 		if fire_unlocked:
 			fire_damage()
 		if ice_unlocked:
@@ -112,6 +117,11 @@ func _physics_process(_delta: float) -> void:
 		if taming_unlocked:
 			enemy_taming()
 	
+	
+	else:
+		experience_bar.visible = false
+		health_bar.visible = false
+		
 	show_pause_menu()
 	
 	if dead:
@@ -143,7 +153,6 @@ func animation_player():
 					"Left":
 						attack_anim.play("Side Attack")
 						anim.flip_h = false
-				print("invincible")
 				Global.SPEED = 0
 				sword_unsheath.play()
 		# walking animations
@@ -185,6 +194,7 @@ func show_pause_menu():
 		pause_menu.visible = true
 		Global.paused = true
 		experience_bar.visible = false
+		health_bar.visible = false
 
 func _check_abilities():
 	# checks if abilities are activated and calls to activate their affects
@@ -221,7 +231,6 @@ func lifesteal():
 		Global.player_health += (Global.explode_base_damage + Global.damage_mod) * lifesteal_percent
 
 func aoe_damage():
-	print("aoe_damage")
 	pass
 
 func fireball():
@@ -237,6 +246,8 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 	if anim.animation != "Die":
 		can_play = true
 		Global.SPEED = Global.BASE_SPEED
+	else:
+		auto_pause = true
 
 # says that this is the player
 func player():
@@ -267,3 +278,4 @@ func _on_dash_immunity_timeout() -> void:
 
 func _on_pause_menu_resume() -> void:
 	experience_bar.visible = true
+	health_bar.visible = true

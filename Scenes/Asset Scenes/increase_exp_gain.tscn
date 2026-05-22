@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://dr0lr136pqsyo"]
+
+[ext_resource type="Texture2D" uid="uid://c2u53reit4dxd" path="res://Sprites/Other/Wizard Hat.png" id="1_6dwr7"]
+
+[node name="Increase Exp Gain" type="Button" unique_id=1638213356]
+texture_filter = 1
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Increase Exp Gain"
+icon = ExtResource("1_6dwr7")

@@ -16,4 +16,3 @@ func _process(_delta: float) -> void:
 		Global.player_level += 1
 		Global.player_experience = 0 + extra_exp
 		Global.player_experience_to_level_up *= 2
-		print("leveled up to level ", Global.player_level)

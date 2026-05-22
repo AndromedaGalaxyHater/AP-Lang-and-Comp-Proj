@@ -1,13 +1,16 @@
 [gd_scene format=3 uid="uid://bjy4arkfco4da"]
 
 [ext_resource type="FontFile" uid="uid://gh70p3nxahqe" path="res://Sprites/Other/boldpixels.ttf" id="1_sdnrc"]
-[ext_resource type="Texture2D" uid="uid://detwwolyy23jg" path="res://Sprites/Other/Heart.png" id="2_ld8uh"]
-[ext_resource type="Texture2D" uid="uid://lyo3xjdqxjp5" path="res://Sprites/Other/Sword.png" id="3_5jghm"]
-[ext_resource type="Texture2D" uid="uid://dpl0x2sw8luw7" path="res://Sprites/Other/Speed_Boost.png" id="4_uvkdy"]
+[ext_resource type="PackedScene" uid="uid://hlb0227dwn12" path="res://Scenes/Asset Scenes/block_up.tscn" id="3_ipsa5"]
+[ext_resource type="PackedScene" uid="uid://fk8kj58phr3v" path="res://Scenes/Asset Scenes/damage_up.tscn" id="4_qv14r"]
+[ext_resource type="PackedScene" uid="uid://crkfo2i3ebjw1" path="res://Scenes/Asset Scenes/fireball_damage_up.tscn" id="5_kteds"]
 [ext_resource type="Script" uid="uid://cjsxbt1t4ct7p" path="res://Scripts/level_up_screen.gd" id="5_uvkdy"]
+[ext_resource type="PackedScene" uid="uid://bd461u7477e6x" path="res://Scenes/Asset Scenes/friend_damage_up.tscn" id="6_ge74f"]
+[ext_resource type="PackedScene" uid="uid://cokf7of3douum" path="res://Scenes/Asset Scenes/health_up.tscn" id="7_oom1h"]
+[ext_resource type="PackedScene" uid="uid://dr0lr136pqsyo" path="res://Scenes/Asset Scenes/increase_exp_gain.tscn" id="8_cgqkp"]
+[ext_resource type="PackedScene" uid="uid://dxow55vupourg" path="res://Scenes/Asset Scenes/speed_up.tscn" id="9_6om2e"]
 
 [node name="Level Up Screen" type="Control" unique_id=1697769970]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -18,7 +21,7 @@ size_flags_horizontal = 6
 size_flags_vertical = 10
 script = ExtResource("5_uvkdy")
 
-[node name="Panel" type="Panel" parent="." unique_id=1268031883]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=521772136]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -26,23 +29,22 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="Panel" unique_id=521772136]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer" unique_id=1155411506]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1155411506]
+custom_minimum_size = Vector2(576, 0)
 layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 4
 theme_override_constants/separation = 20
 
-[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer" unique_id=180982723]
-custom_minimum_size = Vector2(0, 108)
+[node name="Top Sperator" type="HSeparator" parent="MarginContainer/VBoxContainer" unique_id=348065972]
+modulate = Color(1, 1, 1, 0)
 layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.5
+
+[node name="Title" type="Label" parent="MarginContainer/VBoxContainer" unique_id=180982723]
+texture_filter = 1
+layout_mode = 2
+size_flags_vertical = 6
 theme_override_fonts/font = ExtResource("1_sdnrc")
 theme_override_font_sizes/font_size = 32
 text = "You Leveled Up!
@@ -50,33 +52,76 @@ Select An Upgrade"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Health Increase" type="Button" parent="Panel/MarginContainer/VBoxContainer" unique_id=1686482973]
-texture_filter = 1
-custom_minimum_size = Vector2(0, 108)
+[node name="Title_Upgrade Sperator" type="HSeparator" parent="MarginContainer/VBoxContainer" unique_id=2110382719]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("1_sdnrc")
-theme_override_font_sizes/font_size = 32
-text = "Increase Health"
-icon = ExtResource("2_ld8uh")
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.25
 
-[node name="Damage Increase" type="Button" parent="Panel/MarginContainer/VBoxContainer" unique_id=1752665685]
-texture_filter = 1
-custom_minimum_size = Vector2(0, 108)
+[node name="Block Up" parent="MarginContainer/VBoxContainer" unique_id=978726896 instance=ExtResource("3_ipsa5")]
+unique_name_in_owner = true
+visible = false
 layout_mode = 2
-theme_override_fonts/font = ExtResource("1_sdnrc")
+size_flags_vertical = 3
 theme_override_font_sizes/font_size = 32
-text = "Increase Damage"
-icon = ExtResource("3_5jghm")
+expand_icon = true
 
-[node name="Speed Increase" type="Button" parent="Panel/MarginContainer/VBoxContainer" unique_id=1783028613]
-texture_filter = 1
-custom_minimum_size = Vector2(0, 108)
+[node name="Damage Up" parent="MarginContainer/VBoxContainer" unique_id=1686401204 instance=ExtResource("4_qv14r")]
+unique_name_in_owner = true
+visible = false
 layout_mode = 2
-theme_override_fonts/font = ExtResource("1_sdnrc")
+size_flags_vertical = 3
 theme_override_font_sizes/font_size = 32
-text = "Increase Speed"
-icon = ExtResource("4_uvkdy")
+expand_icon = true
 
-[connection signal="pressed" from="Panel/MarginContainer/VBoxContainer/Health Increase" to="." method="_on_health_increase_pressed"]
-[connection signal="pressed" from="Panel/MarginContainer/VBoxContainer/Damage Increase" to="." method="_on_damage_increase_pressed"]
-[connection signal="pressed" from="Panel/MarginContainer/VBoxContainer/Speed Increase" to="." method="_on_speed_increase_pressed"]
+[node name="Fireball Damage Up" parent="MarginContainer/VBoxContainer" unique_id=1954438462 instance=ExtResource("5_kteds")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 32
+expand_icon = true
+
+[node name="Friend Damage Up" parent="MarginContainer/VBoxContainer" unique_id=2083559047 instance=ExtResource("6_ge74f")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 32
+expand_icon = true
+
+[node name="Health Up" parent="MarginContainer/VBoxContainer" unique_id=592031855 instance=ExtResource("7_oom1h")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+expand_icon = true
+
+[node name="Increase Exp Gain" parent="MarginContainer/VBoxContainer" unique_id=1638213356 instance=ExtResource("8_cgqkp")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 32
+expand_icon = true
+
+[node name="Speed Up" parent="MarginContainer/VBoxContainer" unique_id=1399963643 instance=ExtResource("9_6om2e")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 32
+expand_icon = true
+
+[node name="Bottom Seperator" type="HSeparator" parent="MarginContainer/VBoxContainer" unique_id=169458253]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.5
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Block Up" to="." method="_on_block_up_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Damage Up" to="." method="_on_damage_up_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Fireball Damage Up" to="." method="_on_fireball_damage_up_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Friend Damage Up" to="." method="_on_friend_damage_up_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Health Up" to="." method="_on_health_up_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Increase Exp Gain" to="." method="_on_increase_exp_gain_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Speed Up" to="." method="_on_speed_up_pressed"]

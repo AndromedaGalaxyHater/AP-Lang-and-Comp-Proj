@@ -5,7 +5,11 @@ extends Control
 
 func _ready() -> void:
 	reset_upgrades()
-	
+	reset_exp()
+
+func reset_exp():
+	Global.player_experience = Global.experience_reset
+	Global.player_experience_to_level_up = Global.max_exp_reset
 
 func reset_upgrades():
 	Global.quick_dash = false
@@ -43,18 +47,15 @@ func _on_item_list_item_clicked(index: int, _at_position: Vector2, _mouse_button
 		Global.enemy_taming = false
 	# if the abilities are not selected then
 	elif "quick_activated" in ability_dict:
-		print("selected")
 		Global.quick_dash = true
 	elif "invincible_activated" in ability_dict:
 		Global.invincible_dash = true
 	elif "fire_activated" in ability_dict:
 		Global.fire_damage = true
-		print("Fire on Ice off")
 		wiggog_ywrath_smite_the_andromeda_galaxy_please.deselect(index+1)
 		Global.ice_damage = false
 	elif "ice_activated" in ability_dict:
 		Global.ice_damage = true
-		print("Ice on Fire off")
 		wiggog_ywrath_smite_the_andromeda_galaxy_please.deselect(index-1)
 		Global.fire_damage = false
 	elif "lifesteal_activated" in ability_dict:
@@ -65,4 +66,3 @@ func _on_item_list_item_clicked(index: int, _at_position: Vector2, _mouse_button
 		Global.fireball = true
 	elif "taming_activated" in ability_dict:
 		Global.enemy_taming = true
-		print("taming_activated")

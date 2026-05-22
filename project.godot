@@ -23,7 +23,7 @@ Global="*uid://chsfif5vq8k7w"
 
 window/size/mode=3
 window/size/borderless=true
-window/stretch/scale_mode="integer"
+window/stretch/mode="canvas_items"
 
 [gui]
 

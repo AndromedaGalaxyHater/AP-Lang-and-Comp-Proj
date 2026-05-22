@@ -7,6 +7,9 @@ extends CharacterBody2D
 @onready var attack_sfx = $AttackSFX
 @onready var velocity_timer = $"velocity timer"
 @onready var cooldown_timer = %"Hit Cooldown"
+
+var friend_block : int = 0
+var close_to_player = false
 var SPEED : int = 25
 var player = null
 var enemy = null
@@ -31,15 +34,14 @@ func _physics_process(_delta: float) -> void:
 			velocity_mod = 1
 			move_and_slide()
 		elif player != null and Global.player_is_dead == false:
-			if self.global_position.round() == player.global_position.round():
-				SPEED = 0
+			if close_to_player:
+				pass
 			else: 
 				SPEED = BASE_SPEED
-			var direction = global_position.direction_to(player.global_position)
-			velocity_mod = 2
-			velocity = direction * SPEED * velocity_mod
-			move_and_slide()
-			print(global_position)
+				var direction = global_position.direction_to(player.global_position)
+				velocity_mod = 2
+				velocity = direction * SPEED * velocity_mod
+				move_and_slide()
 
 # handles health
 func handle_health():
@@ -53,7 +55,7 @@ func handle_health():
 
 # handles attacking
 func attack():
-	if can_attack and Global.player_health > 0 and enemy != null and !timer_cooldown:
+	if can_attack and Global.player_health > 0 and enemy != null and !timer_cooldown and health > 0:
 		enemy.take_damage("friendly slime")
 		timer_cooldown = true
 		cooldown_timer.start()
@@ -109,16 +111,18 @@ func animations():
 
 # handles being attacked
 func take_damage(type):
-	if type == "explosion":
-		health -= Global.explode_base_damage + Global.damage_mod
-	elif type == "fireball":
-		health -= Global.fireball_base_damage + Global.damage_mod
-	immunity = true
-	immune_timer.start()
-	hit_sfx.play()
-	print(health)
-	velocity_mod = -2
-	velocity_timer.start()
+	if immunity == false:
+		if type == "explosion":
+			health -= (Global.explode_base_damage + Global.damage_mod - friend_block)
+		elif type == "fireball":
+			health -= (Global.fireball_base_damage + Global.damage_mod - friend_block)
+		elif type == "slime":
+			health -= (Global.slime_damage - friend_block)
+		immunity = true
+		immune_timer.start()
+		hit_sfx.play()
+		velocity_mod = -2
+		velocity_timer.start()
 
 # says when player is nearby
 func _on_detector_body_entered(body: Node2D) -> void:
@@ -131,24 +135,26 @@ func _on_detector_body_entered(body: Node2D) -> void:
 func _on_detector_body_exited(body: Node2D) -> void:
 	if body.has_method("enemy"):
 		enemy = null
-	
 
 # says when player enters attack range
 func _on_attack_check_body_entered(body: Node2D) -> void:
 	if body.has_method("enemy"):
 		can_attack = true
+	if body.has_method("player"):
+		close_to_player = true
 
 # says when player leaves attack range
 func _on_attack_check_body_exited(body: Node2D) -> void:
 	if body.has_method("enemy"):
 		can_attack = false
+	if body.has_method("player"):
+		close_to_player = false
 
 func _on_hurtbox_area_entered(_area: Area2D) -> void:
 	pass
 
 func _on_immunity_timer_timeout() -> void:
 	immunity = false
-	print("can hurt")
 
 
 func _on_animated_sprite_2d_animation_finished() -> void:

@@ -1,42 +1,12 @@
-[gd_scene format=4 uid="uid://gd487gi6kd2b"]
+[gd_scene format=3 uid="uid://gd487gi6kd2b"]
 
-[ext_resource type="Texture2D" uid="uid://w1i3ashewtnv" path="res://Tiles/TX Props with Shadow.png" id="1_1ld72"]
 [ext_resource type="Script" uid="uid://cppinojpb0dem" path="res://Scripts/graveyard_spawner.gd" id="1_yjxr8"]
 [ext_resource type="PackedScene" uid="uid://bl8aaqyybjvm1" path="res://Scenes/Asset Scenes/slime.tscn" id="2_s7qjp"]
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_suklg"]
-texture = ExtResource("1_1ld72")
-margins = Vector2i(3, 0)
-17:15/size_in_atlas = Vector2i(3, 3)
-17:15/0 = 0
-17:15/0/y_sort_origin = -13
-17:15/0/physics_layer_0/polygon_0/points = PackedVector2Array(-6, -2.5, 16, -2.5, 16, 9, -6, 9)
-13:14/size_in_atlas = Vector2i(3, 4)
-13:14/0 = 0
-13:14/0/y_sort_origin = 4
-13:14/0/physics_layer_0/polygon_0/points = PackedVector2Array(-6, 6, 16, 6, 16, 19, -6, 19)
-14:18/size_in_atlas = Vector2i(2, 4)
-14:18/0 = 0
-14:18/0/y_sort_origin = 3
-14:18/0/physics_layer_0/polygon_0/points = PackedVector2Array(-12, 6, 6, 6, 6, 18, -12, 18)
-14:11/size_in_atlas = Vector2i(2, 3)
-14:11/0 = 0
-14:11/0/physics_layer_0/polygon_0/points = PackedVector2Array(-12, 7, 6, 7, 6, 16, -12, 16)
-
-[sub_resource type="TileSet" id="TileSet_h23dr"]
-physics_layer_0/collision_layer = 1
-sources/0 = SubResource("TileSetAtlasSource_suklg")
 
 [node name="Graveyard" type="Node2D" unique_id=1550691041]
 y_sort_enabled = true
 script = ExtResource("1_yjxr8")
 slime = ExtResource("2_s7qjp")
-
-[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1948654589]
-y_sort_enabled = true
-texture_filter = 1
-tile_map_data = PackedByteArray("AAAAAP7/AAAOAAsAAAADAP3/AAAOAAsAAAD9////AAANAA4AAAABAAAAAAANAA4AAAD+//z/AAARAA8AAAABAPv/AAAOABIAAAD//wEAAAAOABIAAAA=")
-tile_set = SubResource("TileSet_h23dr")
 
 [node name="Respawn Timer" type="Timer" parent="." unique_id=453751058]
 wait_time = 10.0

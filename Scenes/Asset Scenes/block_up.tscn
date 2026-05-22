@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://hlb0227dwn12"]
+
+[ext_resource type="Texture2D" uid="uid://di80thqnjt80j" path="res://Sprites/Other/Wizard Shield.png" id="1_my7ts"]
+
+[node name="Block Up" type="Button" unique_id=978726896]
+texture_filter = 1
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Increase Block"
+icon = ExtResource("1_my7ts")

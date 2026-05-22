@@ -6,7 +6,7 @@ extends CharacterBody2D
 @onready var hit_sfx = $HitSFX
 @onready var attack_sfx = $AttackSFX
 @onready var velocity_timer = $"velocity timer"
-var SPEED : int = 5
+var SPEED : int = 50
 var player = null
 var can_attack : bool = false
 var slime_dir : String = "Down"
@@ -14,7 +14,7 @@ var health : int = 250
 var immunity : bool = false
 var can_animate : bool = false
 var velocity_mod : int = 1
-var enemy_exp : int = 50
+var enemy_exp : int = 500
 
 func _physics_process(_delta: float) -> void:
 	if !Global.paused:
@@ -103,7 +103,6 @@ func take_damage(type):
 	immunity = true
 	immune_timer.start()
 	hit_sfx.play()
-	print(health)
 	velocity_mod = -2
 	velocity_timer.start()
 
@@ -131,14 +130,14 @@ func _on_hurtbox_area_entered(area: Area2D) -> void:
 
 func _on_immunity_timer_timeout() -> void:
 	immunity = false
-	print("can hurt")
 
 
 func _on_animated_sprite_2d_animation_finished() -> void:
 	if anim.animation == "Spawn In":
 		can_animate = true
 	if anim.animation == "Die":
-		Global.player_experience += enemy_exp
+		@warning_ignore("narrowing_conversion")
+		Global.player_experience += enemy_exp * Global.exp_mult
 		queue_free()
 
 

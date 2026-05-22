@@ -16,7 +16,6 @@ func _on_play_pressed() -> void:
 func _on_upgrades_pressed() -> void:
 	upgrade_anim.play("UpgradeAnimation")
 	upgrade_panel.visible = true
-	print("upgrade screen coming up")
 
 
 func _on_options_pressed() -> void:

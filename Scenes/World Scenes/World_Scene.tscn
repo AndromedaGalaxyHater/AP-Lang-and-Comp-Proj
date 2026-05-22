@@ -11,7 +11,6 @@
 [ext_resource type="PackedScene" uid="uid://33xprg5tdhqw" path="res://Scenes/Asset Scenes/Exp Bar.tscn" id="9_8uxqj"]
 [ext_resource type="PackedScene" uid="uid://bjy4arkfco4da" path="res://Scenes/Asset Scenes/level_up_screen.tscn" id="10_e2vx1"]
 [ext_resource type="PackedScene" uid="uid://dv5uiqtei83w4" path="res://Scenes/Asset Scenes/friendly_slime.tscn" id="11_bkuri"]
-[ext_resource type="PackedScene" uid="uid://dkemytferrxqp" path="res://Scenes/Asset Scenes/death_slime.tscn" id="12_cqcj2"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0jl5p"]
 texture = ExtResource("1_82k2o")
@@ -507,13 +506,20 @@ tile_set = SubResource("TileSet_8uxqj")
 
 [node name="Slime" parent="." unique_id=356267638 instance=ExtResource("6_qreci")]
 position = Vector2(80, -33)
-BASE_SPEED = 50
 
-[node name="Graveyard" parent="." unique_id=1550691041 instance=ExtResource("8_8yjyg")]
+[node name="Spawners" type="Node2D" parent="." unique_id=958929196]
+
+[node name="Top Right" parent="Spawners" unique_id=1550691041 instance=ExtResource("8_8yjyg")]
 position = Vector2(144, -88)
 
-[node name="Graveyard2" parent="." unique_id=401438569 instance=ExtResource("8_8yjyg")]
+[node name="Bottom Left" parent="Spawners" unique_id=401438569 instance=ExtResource("8_8yjyg")]
 position = Vector2(-176, 80)
+
+[node name="Top Left" parent="Spawners" unique_id=1837052541 instance=ExtResource("8_8yjyg")]
+position = Vector2(-242, -74)
+
+[node name="Bottom Right" parent="Spawners" unique_id=254068302 instance=ExtResource("8_8yjyg")]
+position = Vector2(157, 309)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1286775685]
 
@@ -533,6 +539,3 @@ experience_bar = NodePath("../CanvasLayer/Experience Bar")
 
 [node name="Friendly Slime" parent="." unique_id=116079345 instance=ExtResource("11_bkuri")]
 position = Vector2(-38, 99)
-
-[node name="Death Slime" parent="." unique_id=1031495244 instance=ExtResource("12_cqcj2")]
-position = Vector2(-45, 124)

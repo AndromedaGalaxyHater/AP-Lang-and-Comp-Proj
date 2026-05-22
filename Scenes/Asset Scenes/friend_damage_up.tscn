@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://bd461u7477e6x"]
+
+[ext_resource type="Texture2D" uid="uid://c2u53reit4dxd" path="res://Sprites/Other/Wizard Hat.png" id="1_0y36b"]
+
+[node name="Friend Damage Up" type="Button" unique_id=2083559047]
+texture_filter = 1
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Increase Tamed Damage"
+icon = ExtResource("1_0y36b")
