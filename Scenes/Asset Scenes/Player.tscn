@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://ct5nm6pe50xpe" path="res://Scripts/aura.gd" id="6_v3x5v"]
 [ext_resource type="Script" uid="uid://b672f64eudgtl" path="res://Scripts/progress_bar.gd" id="7_grhxo"]
 [ext_resource type="PackedScene" uid="uid://c2fvmbjlyeb1h" path="res://Scenes/Asset Scenes/pause_menu.tscn" id="8_v3x5v"]
+[ext_resource type="Texture2D" uid="uid://bhs0vl57bks4l" path="res://Sprites/Other/Non-Diagetic Wizard Heart.png" id="9_dwhe3"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cu0cs"]
 atlas = ExtResource("4_dwhe3")
@@ -615,6 +616,8 @@ _data = {
 
 [sub_resource type="Theme" id="Theme_grhxo"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_cu0cs"]
+
 [node name="Player" type="CharacterBody2D" unique_id=1586033930]
 y_sort_enabled = true
 script = ExtResource("1_qv8xh")
@@ -684,7 +687,7 @@ shape = SubResource("RectangleShape2D_3rfxs")
 script = ExtResource("6_v3x5v")
 
 [node name="HealthBar" type="ProgressBar" parent="." unique_id=2127619459]
-modulate = Color(0, 1, 0, 1)
+modulate = Color(0.627451, 0.39607844, 0.8039216, 1)
 self_modulate = Color(1.0309138, 1.0309138, 1.0309138, 1)
 z_index = 2
 anchors_preset = 7
@@ -721,9 +724,17 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.25
 
-[node name="UI HealthBar" type="ProgressBar" parent="CanvasLayer/Health Bar" unique_id=99729784]
-modulate = Color(0, 1, 0, 1)
-self_modulate = Color(1.0309138, 1.0309138, 1.0309138, 1)
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Health Bar" unique_id=416141578]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Top Seperator" type="HSeparator" parent="CanvasLayer/Health Bar/VBoxContainer" unique_id=404283596]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="UI HealthBar" type="ProgressBar" parent="CanvasLayer/Health Bar/VBoxContainer" unique_id=99729784]
+self_modulate = Color(0.627451, 0.39607844, 0.8039216, 1)
 z_index = -12
 custom_minimum_size = Vector2(0, 25)
 layout_mode = 2
@@ -734,6 +745,24 @@ theme_override_font_sizes/font_size = 48
 value = 50.0
 show_percentage = false
 script = ExtResource("7_grhxo")
+
+[node name="Heart" type="TextureRect" parent="CanvasLayer/Health Bar/VBoxContainer/UI HealthBar" unique_id=1462749319]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -21.0
+offset_top = -36.0
+offset_right = 19.0
+offset_bottom = 4.0
+grow_vertical = 0
+texture = ExtResource("9_dwhe3")
+
+[node name="Bottom Seperator" type="HSeparator" parent="CanvasLayer/Health Bar/VBoxContainer" unique_id=233047446]
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
 
 [node name="Right Separator" type="VSeparator" parent="CanvasLayer/Health Bar" unique_id=1660131037]
 modulate = Color(1, 1, 1, 0)
@@ -746,6 +775,13 @@ unique_name_in_owner = true
 visible = false
 z_index = 500
 
+[node name="Enemy Detector" type="Area2D" parent="." unique_id=948601766]
+
+[node name="Detector Shape" type="CollisionShape2D" parent="Enemy Detector" unique_id=8487401]
+position = Vector2(0, -5)
+scale = Vector2(1.5, 1.5)
+shape = SubResource("CircleShape2D_cu0cs")
+
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="timeout" from="Dash Immunity" to="." method="_on_dash_immunity_timeout"]
 [connection signal="timeout" from="Dash_Timer" to="." method="_on_dash_timer_timeout"]
@@ -753,3 +789,5 @@ z_index = 500
 [connection signal="finished" from="DieMusic" to="." method="_on_die_music_finished"]
 [connection signal="animation_finished" from="AttackAnimation" to="." method="_on_animation_player_animation_finished"]
 [connection signal="resume" from="CanvasLayer/Pause Menu" to="." method="_on_pause_menu_resume"]
+[connection signal="body_entered" from="Enemy Detector" to="." method="_on_enemy_detector_body_entered"]
+[connection signal="body_exited" from="Enemy Detector" to="." method="_on_enemy_detector_body_exited"]

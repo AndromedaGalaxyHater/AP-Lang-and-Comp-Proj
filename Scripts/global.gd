@@ -1,5 +1,10 @@
 extends Node
 
+var points : int = 0
+var max_points : int = 0
+
+# resets for variables
+var points_reset : int = 0
 var health_reset : int = 50
 var speed_reset : int = 100
 var damage_mod_reset : int = 0
@@ -31,6 +36,8 @@ var tamed_damge_mod : int = 0
 var fireball_damage_mod : int = 0
 var friend_slime_base_damage : int = 5
 var fireball_base_damage : int = 10
+
+var player_is_taming : bool = false
 
 var player_direction : Vector2
 var player_x : float = 0.0
@@ -72,6 +79,47 @@ var ability_list : Dictionary = {
 	}
 }
 
+var quick_achieved = false
+var invincible_achieved = false
+var fire_achieved = false
+var ice_achieved = false
+var lifesteal_achieved = false
+var aoe_achieved = false
+var fireball_achieved = false
+var taming_achieved = false
+
 
 # enemy damage ammounts
 var slime_damage : int = 5
+
+func _process(_delta: float) -> void:
+	check_achievements()
+	handle_points()
+
+# check for achievements
+func check_achievements():
+	
+	if max_points >= 100 and max_points < 500:
+		fireball_achieved = true
+	elif max_points >= 500 and max_points < 1000:
+		fireball_achieved = true
+		taming_achieved = true
+		quick_achieved = true
+	elif max_points >= 1000:
+		# old achievements
+		fireball_achieved = true
+		taming_achieved = true
+		quick_achieved = true
+		
+		# new achievements
+		invincible_achieved = true
+		fire_achieved = true
+		ice_achieved = true
+		lifesteal_achieved = true
+		aoe_achieved = true
+		
+	
+
+func handle_points():
+	if max_points < points:
+		max_points = points

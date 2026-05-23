@@ -33,6 +33,7 @@ func level_up():
 		level = Global.player_level
 		Global.paused = true
 		self.visible = true
+		Global.points += 100
 		randomize_upgrades()
 
 func randomize_upgrades():

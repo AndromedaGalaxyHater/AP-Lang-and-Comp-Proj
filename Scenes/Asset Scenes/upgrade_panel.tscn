@@ -2,22 +2,9 @@
 
 [ext_resource type="Script" uid="uid://bggysjncmd4j7" path="res://Scenes/Asset Scenes/upgrade_panel.gd" id="1_gnp5v"]
 [ext_resource type="FontFile" uid="uid://gh70p3nxahqe" path="res://Sprites/Other/boldpixels.ttf" id="1_wcaau"]
-[ext_resource type="Texture2D" uid="uid://detwwolyy23jg" path="res://Sprites/Other/Heart.png" id="2_gnp5v"]
 [ext_resource type="Texture2D" uid="uid://dpl0x2sw8luw7" path="res://Sprites/Other/Speed_Boost.png" id="3_pg7st"]
-[ext_resource type="Texture2D" uid="uid://byoylq16gg64y" path="res://Tiles/objects.png" id="5_8ovk2"]
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_igpyq"]
-load_path = "res://.godot/imported/fireball.png-04490f9ebdfe737dd45310b35e96a406.ctex"
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_26ct3"]
-atlas = SubResource("CompressedTexture2D_igpyq")
-region = Rect2(64, 32, 24, 24)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_y8nav"]
-atlas = ExtResource("5_8ovk2")
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_b5wac"]
-atlas = SubResource("AtlasTexture_y8nav")
+[ext_resource type="Texture2D" uid="uid://btu48o6aohc3t" path="res://Sprites/Other/Wizard Heart.png" id="4_pg7st"]
+[ext_resource type="Texture2D" uid="uid://dfxsnvf1xs4om" path="res://Sprites/Other/fireball.png" id="5_8ovk2"]
 
 [node name="UpgradePanel" type="Control" unique_id=345639289 node_paths=PackedStringArray("item_list")]
 layout_mode = 3
@@ -81,18 +68,26 @@ icon_mode = 0
 fixed_icon_size = Vector2i(50, 50)
 item_0/text = "Fast Learner (Dash with a lower cooldown)"
 item_0/icon = ExtResource("3_pg7st")
+item_0/selectable = false
 item_1/text = "A bout of perservierence"
 item_1/icon = ExtResource("3_pg7st")
+item_1/selectable = false
 item_2/text = "Firebringer (Does Fire Damage)"
+item_2/selectable = false
 item_3/text = "Chilling Touch(Cold Damage)"
+item_3/selectable = false
 item_4/text = "Vamirism (Grants Lifesteal)"
-item_4/icon = ExtResource("2_gnp5v")
+item_4/icon = ExtResource("4_pg7st")
+item_4/selectable = false
 item_5/text = "Tactical Learning(Nuke)"
-item_5/icon = ExtResource("2_gnp5v")
+item_5/icon = ExtResource("4_pg7st")
+item_5/selectable = false
 item_6/text = "Fireball (Shoot A Fireball)"
-item_6/icon = SubResource("AtlasTexture_26ct3")
+item_6/icon = ExtResource("5_8ovk2")
+item_6/selectable = false
 item_7/text = "Keep Your Friends Close (And Your Enemies Closer)(Tame Enemies)"
-item_7/icon = SubResource("AtlasTexture_b5wac")
+item_7/icon = ExtResource("4_pg7st")
+item_7/selectable = false
 
 [node name="ExitUpgradePanel" type="Button" parent="HBoxContainer/BoxContainer" unique_id=1646111368]
 modulate = Color(0.53333336, 0.7490196, 0.8509804, 1)

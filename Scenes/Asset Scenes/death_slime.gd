@@ -138,6 +138,7 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 	if anim.animation == "Die":
 		@warning_ignore("narrowing_conversion")
 		Global.player_experience += enemy_exp * Global.exp_mult
+		Global.points += 500
 		queue_free()
 
 

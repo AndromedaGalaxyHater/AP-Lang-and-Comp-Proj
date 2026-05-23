@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://djbnjyektsbio" path="res://Sprites/Enemies/slime.png" id="1_2d52u"]
 [ext_resource type="Script" uid="uid://dfjeiwsvl1lvl" path="res://Scripts/slime.gd" id="1_eajb8"]
+[ext_resource type="PackedScene" uid="uid://dv5uiqtei83w4" path="res://Scenes/Asset Scenes/friendly_slime.tscn" id="2_hiytp"]
 [ext_resource type="AudioStream" uid="uid://c07xf6kx4a3yf" path="res://Audio/slime-rancher-slime-splat.mp3" id="3_45dvd"]
 [ext_resource type="AudioStream" uid="uid://bjy83hivya6q2" path="res://Audio/slime-rancher-slime-splat-3.mp3" id="4_0ekng"]
 [ext_resource type="AudioStream" uid="uid://c562137f0l16y" path="res://Audio/slime-rancher-slime-splat-2.mp3" id="4_hiytp"]
@@ -601,6 +602,7 @@ stream_2/stream = ExtResource("6_ej4xx")
 [node name="Slime" type="CharacterBody2D" unique_id=356267638]
 y_sort_enabled = true
 script = ExtResource("1_eajb8")
+tamed_slime = ExtResource("2_hiytp")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1597861152]
 y_sort_enabled = true
@@ -653,6 +655,20 @@ wait_time = 0.25
 
 [node name="Idle Timer" type="Timer" parent="." unique_id=801244181]
 unique_name_in_owner = true
+wait_time = 0.3
+
+[node name="Tame Text" type="Label" parent="." unique_id=1083140441]
+unique_name_in_owner = true
+visible = false
+offset_left = -35.0
+offset_top = -23.0
+offset_right = 103.0
+offset_bottom = -9.0
+scale = Vector2(0.5, 0.5)
+text = "Press \"e\" to tame"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]

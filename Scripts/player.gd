@@ -23,6 +23,7 @@ var dead = false
 var health = Global.player_health
 var SPEED = Global.SPEED
 var lifesteal_percent : float = 200
+var enemy = null
 
 var invinsible_unlocked = false
 var fire_unlocked = false
@@ -55,7 +56,10 @@ func reset_levels():
 	Global.fireball_damage_mod = Global.fireball_mod_reset
 	Global.tamed_damge_mod = Global.tame_mod_reset
 	
+	# reset levels and points
 	Global.player_level = Global.level_reset
+	Global.points = Global.points_reset
+	Global.exp_mult = Global.exp_reset
 
 func get_input():
 	var direction = Input.get_vector("Move Left", "Move Right", "Move Up", "Move Down")
@@ -240,6 +244,13 @@ func fireball():
 			add_sibling(new_fireball)
 
 func enemy_taming():
+	if !dead and enemy != null:
+		if Input.is_action_pressed("Tame"):
+			
+			Global.player_is_taming = true
+		else:
+			Global.player_is_taming = false
+		enemy.get_tamed()
 	pass
 
 func _on_animated_sprite_2d_animation_finished() -> void:
@@ -279,3 +290,15 @@ func _on_dash_immunity_timeout() -> void:
 func _on_pause_menu_resume() -> void:
 	experience_bar.visible = true
 	health_bar.visible = true
+
+
+func _on_enemy_detector_body_entered(body: Node2D) -> void:
+	if body.has_method("enemy"):
+		enemy = body
+
+
+func _on_enemy_detector_body_exited(body: Node2D) -> void:
+	if body.has_method("enemy"):
+		if Global.taming_achieved:
+			enemy.remove_text()
+		enemy = null

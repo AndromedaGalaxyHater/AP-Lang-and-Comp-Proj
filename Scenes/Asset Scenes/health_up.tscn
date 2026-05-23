@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cokf7of3douum"]
 
-[ext_resource type="Texture2D" uid="uid://detwwolyy23jg" path="res://Sprites/Other/Heart.png" id="1_gwg0x"]
+[ext_resource type="Texture2D" uid="uid://btu48o6aohc3t" path="res://Sprites/Other/Wizard Heart.png" id="1_gwg0x"]
 
 [node name="Health Up" type="Button" unique_id=592031855]
 texture_filter = 1

@@ -5,22 +5,56 @@
 
 [node name="Experience Bar" type="Control" unique_id=650054848]
 layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
-anchor_bottom = 0.042000003
-offset_bottom = -27.216002
+anchor_bottom = 1.0
 grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+size_flags_vertical = 3
 
-[node name="Experience Bar" type="ProgressBar" parent="." unique_id=1246569202]
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=108280079]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Left Seperator" type="VSeparator" parent="HBoxContainer" unique_id=147000902]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(25, 0)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer" unique_id=347297524]
+layout_mode = 2
+
+[node name="Top Separator" type="HSeparator" parent="HBoxContainer/VBoxContainer" unique_id=1020219375]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+
+[node name="Experience Bar" type="ProgressBar" parent="HBoxContainer/VBoxContainer" unique_id=1246569202]
 modulate = Color(0, 0.62352943, 1, 1)
 self_modulate = Color(0.3137255, 0.81960785, 1, 1)
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_bottom = 32.0
-grow_horizontal = 2
+custom_minimum_size = Vector2(25, 0)
+layout_mode = 2
+size_flags_vertical = 3
 theme_override_colors/font_color = Color(0.9490196, 1, 0.9490196, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("1_pcxrc")
 theme_override_font_sizes/font_size = 32
 rounded = true
+fill_mode = 3
+show_percentage = false
 script = ExtResource("1_1hw5r")
+
+[node name="Bottom Separator" type="HSeparator" parent="HBoxContainer/VBoxContainer" unique_id=126944378]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+
+[node name="Tween Timer" type="Timer" parent="HBoxContainer/VBoxContainer" unique_id=839883062]
+unique_name_in_owner = true
+wait_time = 0.5
+one_shot = true

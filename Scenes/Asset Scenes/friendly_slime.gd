@@ -22,6 +22,9 @@ var velocity_mod : int = 1
 var enemy_exp : int = 50
 var timer_cooldown = false
 
+func _ready() -> void:
+	pass
+
 func _physics_process(_delta: float) -> void:
 	if !Global.paused:
 		attack()

@@ -1,5 +1,6 @@
 extends CharacterBody2D
 
+@export var tamed_slime : PackedScene
 @export var BASE_SPEED : int = 50
 @onready var anim = $AnimatedSprite2D
 @onready var immune_timer = $"Immunity Timer"
@@ -7,6 +8,7 @@ extends CharacterBody2D
 @onready var attack_sfx = $AttackSFX
 @onready var velocity_timer = $"velocity timer"
 @onready var idle_timer = %"Idle Timer"
+@onready var tame_text = %"Tame Text"
 
 var tame = null
 var tame_fight : bool = false
@@ -34,7 +36,6 @@ func _physics_process(_delta: float) -> void:
 		elif player != null and Global.player_is_dead == false:
 			var direction = global_position.direction_to(player.global_position)
 			velocity = direction * SPEED * velocity_mod
-			print(global_position.direction_to(player.global_position))
 			move_and_slide()
 			idle_timer.stop()
 		elif Global.player_is_dead == false:
@@ -125,6 +126,19 @@ func take_damage(type):
 	velocity_mod = -2
 	velocity_timer.start()
 
+func get_tamed():
+	if Global.player_is_taming:
+		var new_tamed = tamed_slime.instantiate()
+		add_sibling(new_tamed)
+		new_tamed.global_position = self.global_position
+		queue_free()
+	tame_text.visible = true
+	pass
+
+# removes tame text when player exits range
+func remove_text():
+	tame_text.visible = false
+
 # says when player is nearby
 func _on_detector_body_entered(body: Node2D) -> void:
 	if body.has_method("player"):
@@ -167,6 +181,7 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 	if anim.animation == "Die":
 		@warning_ignore("narrowing_conversion")
 		Global.player_experience += enemy_exp * Global.exp_mult
+		Global.points += 50
 		queue_free()
 
 
@@ -179,4 +194,3 @@ func enemy():
 
 func _on_idle_timer_timeout() -> void:
 	idle_vector = Vector2(randi_range(-1,1), randi_range(-1,1))
-	print("changed to", idle_vector)
