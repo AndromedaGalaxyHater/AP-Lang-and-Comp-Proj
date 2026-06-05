@@ -4,15 +4,17 @@ extends CharacterBody2D
 @export var velocity_mod : float = 1
 @export var experience_bar : Control
 @export var fireball_projectile : PackedScene
-@onready var anim = $AnimatedSprite2D
-@onready var attack_anim = %AttackAnimation
-@onready var timer = $"I-Frames"
-@onready var sword_unsheath = $AudioStreamPlayer2D
-@onready var DeathMusic = $DieMusic
-@onready var DeathSFX = $DieSFX
-@onready var Dash_Wait = %Dash_Timer
-@onready var dashing_timer = %"Dash Immunity"
-@onready var health_bar : HBoxContainer = $"CanvasLayer/Health Bar"
+@onready var anim : AnimatedSprite2D = $AnimatedSprite2D
+@onready var attack_anim : AnimationPlayer = %AttackAnimation
+@onready var timer : Timer = $"I-Frames"
+@onready var sword_unsheath : AudioStreamPlayer2D = $AudioStreamPlayer2D
+@onready var DeathMusic : AudioStreamPlayer2D = $DieMusic
+@onready var DeathSFX : AudioStreamPlayer2D = $DieSFX
+@onready var Dash_Wait : Timer = %Dash_Timer
+@onready var dashing_timer : Timer = %"Dash Immunity"
+@onready var health_bar : AnimatedSprite2D = $CanvasLayer/Health
+@onready var block_reset : Timer = %"Block Reset"
+@onready var fireball_cooldown : Timer = %"Fireball Cooldown"
 var block = Global.player_block
 var auto_pause = false
 var dashing = false
@@ -25,13 +27,13 @@ var SPEED = Global.SPEED
 var lifesteal_percent : float = 200
 var enemy = null
 
-var invinsible_unlocked = false
-var fire_unlocked = false
-var ice_unlocked = false
-var lifesteal_unlocked = false
-var aoe_unlocked = false
-var fireball_unlocked = false
-var taming_unlocked = false
+var invinsible_unlocked : bool = false
+var fire_unlocked : bool = false
+var ice_unlocked : bool = false
+var lifesteal_unlocked : bool = false
+var aoe_unlocked : bool = false
+var fireball_unlocked : bool = false
+var taming_unlocked : bool = false
 
 
 func _ready() -> void:
@@ -48,6 +50,10 @@ func reset_levels():
 	# resets health
 	Global.player_health = Global.health_reset
 	Global.max_player_health = Global.health_reset
+	# resets block
+	Global.player_block_count = Global.player_block_reset
+	Global.player_can_block = Global.can_block_reset
+	Global.max_block = Global.max_block_reset
 	# resets speeds
 	Global.BASE_SPEED = Global.speed_reset
 	Global.SPEED = Global.speed_reset
@@ -55,11 +61,14 @@ func reset_levels():
 	Global.damage_mod = Global.damage_mod_reset
 	Global.fireball_damage_mod = Global.fireball_mod_reset
 	Global.tamed_damge_mod = Global.tame_mod_reset
-	
 	# reset levels and points
 	Global.player_level = Global.level_reset
 	Global.points = Global.points_reset
 	Global.exp_mult = Global.exp_reset
+	# resets the kill count
+	Global.total_kills = Global.total_kill_reset
+	Global.caster_kills = Global.caster_kill_reset
+	Global.slime_kills = Global.slime_kill_reset
 
 func get_input():
 	var direction = Input.get_vector("Move Left", "Move Right", "Move Up", "Move Down")
@@ -97,6 +106,7 @@ func die():
 
 func _physics_process(_delta: float) -> void:
 	if !Global.paused:
+		Global.fireball_dir = anim_dir
 		die()
 		dash()
 		sprint()
@@ -121,7 +131,6 @@ func _physics_process(_delta: float) -> void:
 		if taming_unlocked:
 			enemy_taming()
 	
-	
 	else:
 		experience_bar.visible = false
 		health_bar.visible = false
@@ -130,13 +139,23 @@ func _physics_process(_delta: float) -> void:
 	
 	if dead:
 		Global.SPEED = 0
+
+
+func block_damage():
+	Global.player_block_count -= 1
+	if Global.player_block_count <= 0:
+		Global.player_can_block = false
+		block_reset.start()
+	pass
+
+
 func handle_health():
 	# starts i-frame timer when hit
 	if Global.player_invinsible and timer.is_stopped() and attack_anim.is_playing() == false:
 		timer.start()
 	health = Global.player_health
-	if Global.player_health > Global.player_max_health:
-		Global.player_health = Global.player_max_health
+	if Global.player_health > 16:
+		Global.player_health = 16
 
 # handles animations
 func animation_player():
@@ -157,7 +176,6 @@ func animation_player():
 					"Left":
 						attack_anim.play("Side Attack")
 						anim.flip_h = false
-				Global.SPEED = 0
 				sword_unsheath.play()
 		# walking animations
 		elif Input.is_action_pressed("Move Down"):
@@ -193,9 +211,9 @@ func check_anim():
 			can_play = false
 
 func show_pause_menu():
-	if Input.is_action_just_pressed("Pause") or auto_pause:
+	if Input.is_action_just_pressed("Pause") and Global.leveling_up == false or auto_pause:
 		var pause_menu = %"Pause Menu"
-		pause_menu.visible = true
+		pause_menu.visible = true 
 		Global.paused = true
 		experience_bar.visible = false
 		health_bar.visible = false
@@ -232,16 +250,19 @@ func ice_damage():
 
 func lifesteal():
 	if attack_anim.is_playing():
+		@warning_ignore("narrowing_conversion")
 		Global.player_health += (Global.explode_base_damage + Global.damage_mod) * lifesteal_percent
 
 func aoe_damage():
 	pass
 
 func fireball():
-	if !dead:
+	if !dead and fireball_cooldown.is_stopped():
 		if Input.is_action_just_pressed("Fire Fireball"):
 			var new_fireball = fireball_projectile.instantiate()
 			add_sibling(new_fireball)
+			Global.fireball_dir = anim_dir
+			fireball_cooldown.start()
 
 func enemy_taming():
 	if !dead and enemy != null:
@@ -299,6 +320,10 @@ func _on_enemy_detector_body_entered(body: Node2D) -> void:
 
 func _on_enemy_detector_body_exited(body: Node2D) -> void:
 	if body.has_method("enemy"):
-		if Global.taming_achieved:
+		if Global.taming_achieved and taming_unlocked and enemy != null:
 			enemy.remove_text()
 		enemy = null
+
+
+func _on_block_reset_timeout() -> void:
+	Global.player_can_block = true

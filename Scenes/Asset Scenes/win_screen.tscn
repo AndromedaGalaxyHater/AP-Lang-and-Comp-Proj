@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://edvlo3xj2od6"]
+
+[ext_resource type="Script" uid="uid://uc4ldlkaf5qv" path="res://Scenes/Asset Scenes/win_screen.gd" id="1_wqbha"]
+
+[node name="Win Screen" type="Control" unique_id=369210595]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_wqbha")
+
+[node name="Panel" type="Panel" parent="." unique_id=1660365533]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel" unique_id=1921862399]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="You Win" type="Label" parent="Panel/VBoxContainer" unique_id=1533108596]
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 128
+text = "CONGRADULATIONS
+YOU WIN!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Return To Main Menu" type="Button" parent="Panel/VBoxContainer" unique_id=2105167676]
+custom_minimum_size = Vector2(384, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 80
+text = "Main Menu"
+
+[node name="HSeparator" type="HSeparator" parent="Panel/VBoxContainer" unique_id=742199765]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.25
+
+[connection signal="pressed" from="Panel/VBoxContainer/Return To Main Menu" to="." method="_on_return_to_main_menu_pressed"]

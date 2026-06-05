@@ -3,10 +3,11 @@
 [ext_resource type="Script" uid="uid://cppinojpb0dem" path="res://Scripts/graveyard_spawner.gd" id="1_yjxr8"]
 [ext_resource type="PackedScene" uid="uid://bl8aaqyybjvm1" path="res://Scenes/Asset Scenes/slime.tscn" id="2_s7qjp"]
 
-[node name="Graveyard" type="Node2D" unique_id=1550691041]
+[node name="Slime Spawner" type="Node2D" unique_id=1550691041]
 y_sort_enabled = true
 script = ExtResource("1_yjxr8")
-slime = ExtResource("2_s7qjp")
+enemy = ExtResource("2_s7qjp")
+max_enemies_spawn = 2
 
 [node name="Respawn Timer" type="Timer" parent="." unique_id=453751058]
 wait_time = 10.0

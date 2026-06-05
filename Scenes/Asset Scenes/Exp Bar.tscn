@@ -1,7 +1,10 @@
 [gd_scene format=3 uid="uid://33xprg5tdhqw"]
 
 [ext_resource type="Script" uid="uid://bs1gm82wchfh1" path="res://Scripts/experience_bar.gd" id="1_1hw5r"]
-[ext_resource type="FontFile" uid="uid://gh70p3nxahqe" path="res://Sprites/Other/boldpixels.ttf" id="1_pcxrc"]
+[ext_resource type="Texture2D" uid="uid://b16xij81ds7u6" path="res://Sprites/Other/EXp Barl.png" id="1_4m8av"]
+[ext_resource type="Texture2D" uid="uid://cbagiuevta076" path="res://Sprites/Other/Exp_Fill.png" id="2_webix"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_kok7b"]
 
 [node name="Experience Bar" type="Control" unique_id=650054848]
 layout_mode = 3
@@ -13,48 +16,30 @@ grow_vertical = 2
 size_flags_horizontal = 0
 size_flags_vertical = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=108280079]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Left Seperator" type="VSeparator" parent="HBoxContainer" unique_id=147000902]
-modulate = Color(1, 1, 1, 0)
-custom_minimum_size = Vector2(25, 0)
-layout_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer" unique_id=347297524]
-layout_mode = 2
-
-[node name="Top Separator" type="HSeparator" parent="HBoxContainer/VBoxContainer" unique_id=1020219375]
-modulate = Color(1, 1, 1, 0)
+[node name="TextureProgressBar" type="TextureProgressBar" parent="." unique_id=1016767525]
+texture_filter = 1
 custom_minimum_size = Vector2(0, 25)
-layout_mode = 2
-
-[node name="Experience Bar" type="ProgressBar" parent="HBoxContainer/VBoxContainer" unique_id=1246569202]
-modulate = Color(0, 0.62352943, 1, 1)
-self_modulate = Color(0.3137255, 0.81960785, 1, 1)
-custom_minimum_size = Vector2(25, 0)
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_colors/font_color = Color(0.9490196, 1, 0.9490196, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("1_pcxrc")
-theme_override_font_sizes/font_size = 32
-rounded = true
-fill_mode = 3
-show_percentage = false
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -432.0
+offset_top = -104.0
+offset_right = -212.0
+offset_bottom = -79.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(4, 4)
+size_flags_horizontal = 4
+size_flags_vertical = 10
+texture_under = SubResource("ViewportTexture_kok7b")
+texture_over = ExtResource("1_4m8av")
+texture_progress = ExtResource("2_webix")
 script = ExtResource("1_1hw5r")
 
-[node name="Bottom Separator" type="HSeparator" parent="HBoxContainer/VBoxContainer" unique_id=126944378]
-modulate = Color(1, 1, 1, 0)
-custom_minimum_size = Vector2(0, 25)
-layout_mode = 2
-
-[node name="Tween Timer" type="Timer" parent="HBoxContainer/VBoxContainer" unique_id=839883062]
+[node name="Tween Timer" type="Timer" parent="." unique_id=839883062]
 unique_name_in_owner = true
 wait_time = 0.5
 one_shot = true

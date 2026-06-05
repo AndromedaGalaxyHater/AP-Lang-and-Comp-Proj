@@ -2,25 +2,42 @@ extends Node
 
 var points : int = 0
 var max_points : int = 0
+var won : bool = false
+var lost : bool = false
 
 # resets for variables
-var points_reset : int = 0
-var health_reset : int = 50
-var speed_reset : int = 100
-var damage_mod_reset : int = 0
-var tame_mod_reset : int = 0
-var fireball_mod_reset : int = 0
-var experience_reset : int = 0
-var max_exp_reset : int = 100
-var block_reset : int = 0
-var exp_reset : float = 1
-var level_reset : int = 0
+const points_reset : int = 0
+const health_reset : int = 8
+const speed_reset : int = 100
+const damage_mod_reset : int = 0
+const tame_mod_reset : int = 0
+const fireball_mod_reset : int = 0
+const experience_reset : int = 0
+const max_exp_reset : int = 100
+const can_block_reset : bool = false
+const player_block_reset : int = 0
+const exp_reset : float = 1
+const level_reset : int = 0
+const max_block_reset : int = 0
 
+# one time checks
+var first_steps : bool = true
+
+# resets for enemy variables
+const caster_kill_reset : int = 0
+const slime_kill_reset : int = 0
+const total_kill_reset : int = 0
+
+var fireball_dir = "Down"
+var leveling_up : bool = false
+var player_can_block : bool = false
+var player_block_count : int = 0
+var max_block : int = 0
 var exp_mult : float = 1
-var player_block : int = 0
-var max_player_health : int = 50
-var player_health : float = 50
-var player_max_health : int = 50
+var player_block : int = 2
+var max_player_health : int = 8
+var player_health : int = 8
+var player_max_health : int = 8
 var player_is_dead : bool = false
 var player_invinsible : bool = false
 var explode_base_damage : int = 5
@@ -90,7 +107,13 @@ var taming_achieved = false
 
 
 # enemy damage ammounts
-var slime_damage : int = 5
+var slime_damage : int = 2
+var book_damage : int = 2
+
+# enemies killed count
+var total_kills : int = 0
+var caster_kills : int = 0
+var slime_kills : int = 0
 
 func _process(_delta: float) -> void:
 	check_achievements()
@@ -99,16 +122,10 @@ func _process(_delta: float) -> void:
 # check for achievements
 func check_achievements():
 	
-	if max_points >= 100 and max_points < 500:
-		fireball_achieved = true
-	elif max_points >= 500 and max_points < 1000:
-		fireball_achieved = true
-		taming_achieved = true
+	if max_points >= 100 and max_points < 1000:
 		quick_achieved = true
 	elif max_points >= 1000:
 		# old achievements
-		fireball_achieved = true
-		taming_achieved = true
 		quick_achieved = true
 		
 		# new achievements
@@ -117,7 +134,11 @@ func check_achievements():
 		ice_achieved = true
 		lifesteal_achieved = true
 		aoe_achieved = true
-		
+	
+	if caster_kills >= 3:
+		fireball_achieved = true
+	if slime_kills >= 5:
+		taming_achieved = true
 	
 
 func handle_points():

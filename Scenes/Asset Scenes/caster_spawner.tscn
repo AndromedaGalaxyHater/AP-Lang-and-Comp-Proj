@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://bvsgtin23cls0"]
+
+[ext_resource type="Script" uid="uid://cppinojpb0dem" path="res://Scripts/graveyard_spawner.gd" id="1_l5xqi"]
+[ext_resource type="PackedScene" uid="uid://li6xiuh07w38" path="res://Scenes/Asset Scenes/book_caster.tscn" id="2_d426d"]
+
+[node name="Caster Spawner" type="Node2D" unique_id=1550691041]
+y_sort_enabled = true
+script = ExtResource("1_l5xqi")
+enemy = ExtResource("2_d426d")
+max_enemies_spawn = 1
+
+[node name="Respawn Timer" type="Timer" parent="." unique_id=453751058]
+wait_time = 15.0
+autostart = true
+
+[connection signal="timeout" from="Respawn Timer" to="." method="_on_respawn_timer_timeout"]

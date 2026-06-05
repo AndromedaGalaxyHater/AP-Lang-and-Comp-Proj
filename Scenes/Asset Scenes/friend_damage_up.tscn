@@ -1,10 +1,39 @@
 [gd_scene format=3 uid="uid://bd461u7477e6x"]
 
-[ext_resource type="Texture2D" uid="uid://c2u53reit4dxd" path="res://Sprites/Other/Wizard Hat.png" id="1_0y36b"]
+[ext_resource type="Texture2D" uid="uid://mf8qkswetxud" path="res://Sprites/Other/Button Template.png" id="1_0y36b"]
 
-[node name="Friend Damage Up" type="Button" unique_id=2083559047]
+[sub_resource type="AtlasTexture" id="AtlasTexture_6ella"]
+atlas = ExtResource("1_0y36b")
+region = Rect2(128, 18, 64, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pr256"]
+atlas = ExtResource("1_0y36b")
+region = Rect2(64, 18, 64, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0vlw0"]
+atlas = ExtResource("1_0y36b")
+region = Rect2(0, 18, 64, 28)
+
+[node name="friend_damage_up" type="TextureButton" unique_id=1604212840]
 texture_filter = 1
-offset_right = 8.0
-offset_bottom = 8.0
-text = "Increase Tamed Damage"
-icon = ExtResource("1_0y36b")
+offset_right = 111.0
+offset_bottom = 49.0
+size_flags_horizontal = 3
+texture_normal = SubResource("AtlasTexture_6ella")
+texture_pressed = SubResource("AtlasTexture_pr256")
+texture_hover = SubResource("AtlasTexture_0vlw0")
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="." unique_id=1272656026]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.91764706, 0.76862746, 0.68235296, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.23529412)
+theme_override_font_sizes/font_size = 32
+text = "Ally Damage ⬆"
+horizontal_alignment = 1
+vertical_alignment = 1

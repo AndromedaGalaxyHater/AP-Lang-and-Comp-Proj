@@ -1,0 +1,110 @@
+[gd_scene format=3 uid="uid://dxyu0fdmqv1dn"]
+
+[ext_resource type="Texture2D" uid="uid://mf8qkswetxud" path="res://Sprites/Other/Button Template.png" id="1_rohnc"]
+[ext_resource type="Script" uid="uid://cy3plb4pxprr5" path="res://Scenes/Asset Scenes/upgrade_achieved.gd" id="2_ukcbn"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ukcbn"]
+atlas = ExtResource("1_rohnc")
+region = Rect2(0, 18, 64, 28)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_h52cn"]
+texture = SubResource("AtlasTexture_ukcbn")
+
+[sub_resource type="Animation" id="Animation_h52cn"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(860, 500)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_os5ar"]
+resource_name = "Upgrade Got"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(860, 831), Vector2(860, 500), Vector2(860, 500), Vector2(860, 831)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2.5, 3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nv7m8"]
+_data = {
+&"RESET": SubResource("Animation_h52cn"),
+&"Upgrade Got": SubResource("Animation_os5ar")
+}
+
+[node name="Upgrade Achieved" type="Panel" unique_id=1452108420]
+visible = false
+texture_filter = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -292.0
+offset_top = -148.0
+offset_right = -228.00006
+offset_bottom = -120.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(4, 4)
+theme_override_styles/panel = SubResource("StyleBoxTexture_h52cn")
+script = ExtResource("2_ukcbn")
+
+[node name="Upgrade Achieved Text" type="Label" parent="." unique_id=947774923]
+unique_name_in_owner = true
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 64.00006
+offset_bottom = 28.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+theme_override_font_sizes/font_size = 16
+text = "UNLOCKED"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Upgrade Animations" type="AnimationPlayer" parent="." unique_id=729736184]
+libraries/ = SubResource("AnimationLibrary_nv7m8")

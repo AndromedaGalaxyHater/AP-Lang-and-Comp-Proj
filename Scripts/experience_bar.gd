@@ -1,4 +1,4 @@
-extends ProgressBar
+extends TextureProgressBar
 
 @onready var tween_timer = %"Tween Timer"
 var extra_exp : int = 0

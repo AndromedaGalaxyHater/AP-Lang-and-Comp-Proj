@@ -9,14 +9,18 @@ extends CharacterBody2D
 @onready var velocity_timer = $"velocity timer"
 @onready var idle_timer = %"Idle Timer"
 @onready var tame_text = %"Tame Text"
+@onready var attack_timer = %"Attack Timer"
+@onready var flash_timer = %"color flash timer"
 
+var spawner
+var player_in_range : bool = false
 var tame = null
 var tame_fight : bool = false
 var SPEED : int = 25
 var player = null
 var can_attack : bool = false
 var slime_dir : String = "Down"
-var health : int = 15
+var health : int = 25
 var immunity : bool = false
 var can_animate : bool = false
 var velocity_mod : int = 1
@@ -56,10 +60,17 @@ func handle_health():
 
 # handles attacking
 func attack():
+	if player_in_range and attack_timer.is_stopped() and can_attack == false:
+		attack_timer.start()
 	if health > 0:
-		if can_attack and Global.player_health > 0 and Global.player_invinsible == false and (Global.slime_damage - Global.player_block) > 0:
-			Global.player_health -= (Global.slime_damage - Global.player_block)
-			Global.player_invinsible = true
+		if can_attack and Global.player_health > 0 and Global.player_invinsible == false:
+			if Global.player_can_block:
+				player.block_damage()
+				can_attack = false
+			else:
+				Global.player_health -= Global.slime_damage
+				Global.player_invinsible = true
+				can_attack = false
 			attack_sfx.play()
 		if tame_fight and tame != null and tame.immunity == false:
 			tame.take_damage("slime")
@@ -121,6 +132,8 @@ func take_damage(type):
 	elif type == "friendly slime":
 		health -= Global.friend_slime_base_damage + Global.tamed_damge_mod
 	immunity = true
+	modulate = "#ff0000"
+	flash_timer.start()
 	immune_timer.start()
 	hit_sfx.play()
 	velocity_mod = -2
@@ -128,6 +141,12 @@ func take_damage(type):
 
 func get_tamed():
 	if Global.player_is_taming:
+		# increase globals
+		Global.total_kills += 1
+		Global.slime_kills += 1
+		Global.points += 50
+		Global.player_experience += 50
+		
 		var new_tamed = tamed_slime.instantiate()
 		add_sibling(new_tamed)
 		new_tamed.global_position = self.global_position
@@ -156,14 +175,15 @@ func _on_detector_body_exited(body: Node2D) -> void:
 # says when player enters attack range
 func _on_attack_check_body_entered(body: Node2D) -> void:
 	if body.has_method("player"):
-		can_attack = true
+		player_in_range = true
 	if body.has_method("friend"):
 		tame_fight = true
 
 # says when player leaves attack range
 func _on_attack_check_body_exited(body: Node2D) -> void:
 	if body.has_method("player"):
-		can_attack = false
+		player_in_range = false
+		attack_timer.stop()
 	if body.has_method("friend"):
 		tame_fight = false
 
@@ -179,9 +199,12 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 	if anim.animation == "Spawn In":
 		can_animate = true
 	if anim.animation == "Die":
+		spawner.enemy_died()
 		@warning_ignore("narrowing_conversion")
 		Global.player_experience += enemy_exp * Global.exp_mult
 		Global.points += 50
+		Global.slime_kills += 1
+		Global.total_kills += 1
 		queue_free()
 
 
@@ -192,5 +215,17 @@ func enemy():
 	pass
 
 
+func name_spawner(spawn_point):
+	spawner = spawn_point
+
+
 func _on_idle_timer_timeout() -> void:
 	idle_vector = Vector2(randi_range(-1,1), randi_range(-1,1))
+
+
+func _on_attack_timer_timeout() -> void:
+	can_attack = true
+
+
+func _on_color_flash_timer_timeout() -> void:
+	modulate = "ffffff"

@@ -12,43 +12,56 @@ func _ready() -> void:
 	self.position.y = Global.player_y
 	var direction = Global.player_direction
 	velocity = direction * FIREBALL_SPEED
-	if direction != Vector2(0,0):
-		last_dir = direction
-	if direction == Vector2(0,0):
-		velocity = last_dir * FIREBALL_SPEED
-	if direction == Vector2(-1,0):
-		anim.flip_h = true
-		anim.rotation = 0
-	elif direction == Vector2(1,0):
-		anim.flip_h = false
-		anim.rotation = 0
-	elif direction == Vector2(0,-1):
-		anim.rotation = -90
-	elif direction == Vector2 (0,1):
-		anim.rotation = 90
-	elif direction.x > 0 and direction.y < 0:
-		anim.rotation = -45
-		anim.flip_h = false
-	elif direction.x < 0 and direction.y < 0:
-		anim.rotation = 45
-		anim.flip_h = true
-	elif direction.x < 0 and direction.y > 0:
-		anim.rotation = -45
-		anim.flip_h = true
-	elif direction.x > 0 and direction.y > 0:
-		anim.rotation = 45
-		anim.flip_h = false
+	if velocity == Vector2(0,0):
+		match Global.fireball_dir:
+			"Up":
+				velocity = Vector2(0,-1) * FIREBALL_SPEED
+				direction = Vector2(0,-1)
+			"Down":
+				velocity = Vector2(0,1) * FIREBALL_SPEED
+				direction = Vector2(0,1)
+			"Left":
+				velocity = Vector2(-1,0) * FIREBALL_SPEED
+				direction = Vector2(-1,0)
+			"Right":
+				velocity = Vector2(1,0) * FIREBALL_SPEED
+				direction = Vector2(1,0)
+	# modifies animation
+	anim.rotation = direction.angle()
 
 
 func _physics_process(_delta: float) -> void:
-	move_and_slide()
+	if Global.paused == false:
+		move_and_slide()
 
 func _on_fireball_area_body_entered(body: Node2D) -> void:
 	if body.has_method("enemy"):
 		anim.play("Explode")
 		explosion_sfx.play()
 		body.take_damage("fireball")
+		velocity = Vector2(0,0)
+	# doesn't work needs to detect other body
+	elif body.has_method("enemy_fireball"):
+		anim.play("Explode")
+		explosion_sfx.play()
+		velocity = Vector2(0,0)
 
 
 func _on_explosion_sound_finished() -> void:
 	queue_free()
+
+# calls the object with the script a fireball
+func fireball():
+	pass
+
+
+func _on_fireball_area_area_entered(area: Area2D) -> void:
+	if str(area.name) == "Fireball Area":
+		anim.play("Explode")
+		explosion_sfx.play()
+		velocity = Vector2(0,0)
+
+
+func _on_fireball_animations_animation_finished() -> void:
+	if anim.animation == "Explode":
+		queue_free()

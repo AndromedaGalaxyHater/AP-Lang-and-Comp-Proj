@@ -9,7 +9,7 @@
 [ext_resource type="Script" uid="uid://ct5nm6pe50xpe" path="res://Scripts/aura.gd" id="6_v3x5v"]
 [ext_resource type="Script" uid="uid://b672f64eudgtl" path="res://Scripts/progress_bar.gd" id="7_grhxo"]
 [ext_resource type="PackedScene" uid="uid://c2fvmbjlyeb1h" path="res://Scenes/Asset Scenes/pause_menu.tscn" id="8_v3x5v"]
-[ext_resource type="Texture2D" uid="uid://bhs0vl57bks4l" path="res://Sprites/Other/Non-Diagetic Wizard Heart.png" id="9_dwhe3"]
+[ext_resource type="Texture2D" uid="uid://cyyk8ypxiv4ro" path="res://Sprites/Other/Non-Diagetic Wizard Heart-sheet.png" id="9_rh37a"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cu0cs"]
 atlas = ExtResource("4_dwhe3")
@@ -614,7 +614,116 @@ _data = {
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3rfxs"]
 
-[sub_resource type="Theme" id="Theme_grhxo"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_g38mq"]
+atlas = ExtResource("9_rh37a")
+region = Rect2(0, 64, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7yj48"]
+atlas = ExtResource("9_rh37a")
+region = Rect2(0, 128, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6vyu7"]
+atlas = ExtResource("9_rh37a")
+region = Rect2(0, 112, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_knd8x"]
+atlas = ExtResource("9_rh37a")
+region = Rect2(0, 96, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xnii7"]
+atlas = ExtResource("9_rh37a")
+region = Rect2(0, 80, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8rp0k"]
+atlas = ExtResource("9_rh37a")
+region = Rect2(0, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ba3du"]
+atlas = ExtResource("9_rh37a")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yubs3"]
+atlas = ExtResource("9_rh37a")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3rfxs"]
+atlas = ExtResource("9_rh37a")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7yj48"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g38mq")
+}],
+"loop": false,
+"name": &"0",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7yj48")
+}],
+"loop": false,
+"name": &"10",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6vyu7")
+}],
+"loop": false,
+"name": &"12",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_knd8x")
+}],
+"loop": false,
+"name": &"14",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xnii7")
+}],
+"loop": false,
+"name": &"16",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8rp0k")
+}],
+"loop": false,
+"name": &"2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ba3du")
+}],
+"loop": false,
+"name": &"4",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yubs3")
+}],
+"loop": false,
+"name": &"6",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3rfxs")
+}],
+"loop": false,
+"name": &"8",
+"speed": 5.0
+}]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cu0cs"]
 
@@ -686,89 +795,15 @@ scale = Vector2(1e-05, 1e-05)
 shape = SubResource("RectangleShape2D_3rfxs")
 script = ExtResource("6_v3x5v")
 
-[node name="HealthBar" type="ProgressBar" parent="." unique_id=2127619459]
-modulate = Color(0.627451, 0.39607844, 0.8039216, 1)
-self_modulate = Color(1.0309138, 1.0309138, 1.0309138, 1)
-z_index = 2
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -11.0
-offset_top = -24.0
-offset_right = 11.0
-offset_bottom = -19.0
-grow_horizontal = 2
-grow_vertical = 0
-size_flags_horizontal = 4
-theme = SubResource("Theme_grhxo")
-value = 50.0
-show_percentage = false
-script = ExtResource("7_grhxo")
-
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=74752598]
 
-[node name="Health Bar" type="HBoxContainer" parent="CanvasLayer" unique_id=737605544]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="Left Separator" type="VSeparator" parent="CanvasLayer/Health Bar" unique_id=540794086]
-modulate = Color(1, 1, 1, 0)
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_stretch_ratio = 0.25
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Health Bar" unique_id=416141578]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="Top Seperator" type="HSeparator" parent="CanvasLayer/Health Bar/VBoxContainer" unique_id=404283596]
-modulate = Color(1, 1, 1, 0)
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="UI HealthBar" type="ProgressBar" parent="CanvasLayer/Health Bar/VBoxContainer" unique_id=99729784]
-self_modulate = Color(0.627451, 0.39607844, 0.8039216, 1)
-z_index = -12
-custom_minimum_size = Vector2(0, 25)
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 8
-theme = SubResource("Theme_grhxo")
-theme_override_font_sizes/font_size = 48
-value = 50.0
-show_percentage = false
-script = ExtResource("7_grhxo")
-
-[node name="Heart" type="TextureRect" parent="CanvasLayer/Health Bar/VBoxContainer/UI HealthBar" unique_id=1462749319]
+[node name="Health" type="AnimatedSprite2D" parent="CanvasLayer" unique_id=1284558697]
 texture_filter = 1
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = -21.0
-offset_top = -36.0
-offset_right = 19.0
-offset_bottom = 4.0
-grow_vertical = 0
-texture = ExtResource("9_dwhe3")
-
-[node name="Bottom Seperator" type="HSeparator" parent="CanvasLayer/Health Bar/VBoxContainer" unique_id=233047446]
-self_modulate = Color(1, 1, 1, 0)
-custom_minimum_size = Vector2(0, 15)
-layout_mode = 2
-
-[node name="Right Separator" type="VSeparator" parent="CanvasLayer/Health Bar" unique_id=1660131037]
-modulate = Color(1, 1, 1, 0)
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_stretch_ratio = 0.25
+position = Vector2(120, 120)
+scale = Vector2(15, 15)
+sprite_frames = SubResource("SpriteFrames_7yj48")
+animation = &"8"
+script = ExtResource("7_grhxo")
 
 [node name="Pause Menu" parent="CanvasLayer" unique_id=1789256309 instance=ExtResource("8_v3x5v")]
 unique_name_in_owner = true
@@ -782,6 +817,16 @@ position = Vector2(0, -5)
 scale = Vector2(1.5, 1.5)
 shape = SubResource("CircleShape2D_cu0cs")
 
+[node name="Fireball Cooldown" type="Timer" parent="." unique_id=1317569115]
+unique_name_in_owner = true
+wait_time = 0.5
+one_shot = true
+
+[node name="Block Reset" type="Timer" parent="." unique_id=895394454]
+unique_name_in_owner = true
+wait_time = 5.0
+one_shot = true
+
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="timeout" from="Dash Immunity" to="." method="_on_dash_immunity_timeout"]
 [connection signal="timeout" from="Dash_Timer" to="." method="_on_dash_timer_timeout"]
@@ -791,3 +836,4 @@ shape = SubResource("CircleShape2D_cu0cs")
 [connection signal="resume" from="CanvasLayer/Pause Menu" to="." method="_on_pause_menu_resume"]
 [connection signal="body_entered" from="Enemy Detector" to="." method="_on_enemy_detector_body_entered"]
 [connection signal="body_exited" from="Enemy Detector" to="." method="_on_enemy_detector_body_exited"]
+[connection signal="timeout" from="Block Reset" to="." method="_on_block_reset_timeout"]

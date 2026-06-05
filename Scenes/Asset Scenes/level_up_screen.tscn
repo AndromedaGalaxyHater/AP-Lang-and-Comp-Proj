@@ -2,6 +2,7 @@
 
 [ext_resource type="FontFile" uid="uid://gh70p3nxahqe" path="res://Sprites/Other/boldpixels.ttf" id="1_sdnrc"]
 [ext_resource type="PackedScene" uid="uid://hlb0227dwn12" path="res://Scenes/Asset Scenes/block_up.tscn" id="3_ipsa5"]
+[ext_resource type="Texture2D" uid="uid://mf8qkswetxud" path="res://Sprites/Other/Button Template.png" id="4_kteds"]
 [ext_resource type="PackedScene" uid="uid://fk8kj58phr3v" path="res://Scenes/Asset Scenes/damage_up.tscn" id="4_qv14r"]
 [ext_resource type="PackedScene" uid="uid://crkfo2i3ebjw1" path="res://Scenes/Asset Scenes/fireball_damage_up.tscn" id="5_kteds"]
 [ext_resource type="Script" uid="uid://cjsxbt1t4ct7p" path="res://Scripts/level_up_screen.gd" id="5_uvkdy"]
@@ -9,6 +10,18 @@
 [ext_resource type="PackedScene" uid="uid://cokf7of3douum" path="res://Scenes/Asset Scenes/health_up.tscn" id="7_oom1h"]
 [ext_resource type="PackedScene" uid="uid://dr0lr136pqsyo" path="res://Scenes/Asset Scenes/increase_exp_gain.tscn" id="8_cgqkp"]
 [ext_resource type="PackedScene" uid="uid://dxow55vupourg" path="res://Scenes/Asset Scenes/speed_up.tscn" id="9_6om2e"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6ella"]
+atlas = ExtResource("4_kteds")
+region = Rect2(128, 18, 64, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pr256"]
+atlas = ExtResource("4_kteds")
+region = Rect2(64, 18, 64, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0vlw0"]
+atlas = ExtResource("4_kteds")
+region = Rect2(0, 18, 64, 28)
 
 [node name="Level Up Screen" type="Control" unique_id=1697769970]
 layout_mode = 3
@@ -53,6 +66,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Title_Upgrade Sperator" type="HSeparator" parent="MarginContainer/VBoxContainer" unique_id=2110382719]
+modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.25
@@ -62,55 +76,59 @@ unique_name_in_owner = true
 visible = false
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_font_sizes/font_size = 32
-expand_icon = true
+texture_normal = SubResource("AtlasTexture_6ella")
+texture_pressed = SubResource("AtlasTexture_pr256")
+texture_hover = SubResource("AtlasTexture_0vlw0")
 
 [node name="Damage Up" parent="MarginContainer/VBoxContainer" unique_id=1686401204 instance=ExtResource("4_qv14r")]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_font_sizes/font_size = 32
-expand_icon = true
+texture_normal = SubResource("AtlasTexture_6ella")
+texture_pressed = SubResource("AtlasTexture_pr256")
+texture_hover = SubResource("AtlasTexture_0vlw0")
 
 [node name="Fireball Damage Up" parent="MarginContainer/VBoxContainer" unique_id=1954438462 instance=ExtResource("5_kteds")]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_font_sizes/font_size = 32
-expand_icon = true
+texture_normal = SubResource("AtlasTexture_6ella")
+texture_pressed = SubResource("AtlasTexture_pr256")
+texture_hover = SubResource("AtlasTexture_0vlw0")
 
 [node name="Friend Damage Up" parent="MarginContainer/VBoxContainer" unique_id=2083559047 instance=ExtResource("6_ge74f")]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_font_sizes/font_size = 32
-expand_icon = true
+texture_normal = SubResource("AtlasTexture_6ella")
+texture_pressed = SubResource("AtlasTexture_pr256")
+texture_hover = SubResource("AtlasTexture_0vlw0")
 
 [node name="Health Up" parent="MarginContainer/VBoxContainer" unique_id=592031855 instance=ExtResource("7_oom1h")]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
-theme_override_font_sizes/font_size = 32
-expand_icon = true
+texture_normal = SubResource("AtlasTexture_6ella")
+texture_pressed = SubResource("AtlasTexture_pr256")
+texture_hover = SubResource("AtlasTexture_0vlw0")
 
 [node name="Increase Exp Gain" parent="MarginContainer/VBoxContainer" unique_id=1638213356 instance=ExtResource("8_cgqkp")]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_font_sizes/font_size = 32
-expand_icon = true
 
 [node name="Speed Up" parent="MarginContainer/VBoxContainer" unique_id=1399963643 instance=ExtResource("9_6om2e")]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_font_sizes/font_size = 32
-expand_icon = true
+texture_normal = SubResource("AtlasTexture_6ella")
+texture_pressed = SubResource("AtlasTexture_pr256")
+texture_hover = SubResource("AtlasTexture_0vlw0")
 
 [node name="Bottom Seperator" type="HSeparator" parent="MarginContainer/VBoxContainer" unique_id=169458253]
 modulate = Color(1, 1, 1, 0)

@@ -1,0 +1,150 @@
+[gd_scene format=3 uid="uid://c3g0lv6u7fo35"]
+
+[ext_resource type="Texture2D" uid="uid://mf8qkswetxud" path="res://Sprites/Other/Button Template.png" id="1_6kfbg"]
+[ext_resource type="Script" uid="uid://38igs4lhs4ac" path="res://Scenes/Asset Scenes/show_controls.gd" id="1_wt883"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wt883"]
+atlas = ExtResource("1_6kfbg")
+region = Rect2(64, 18, 64, 28)
+
+[sub_resource type="Animation" id="Animation_mc1mq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TextureRect/Walk Instructions:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TextureRect/Attack Instructions:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_tws4h"]
+resource_name = "Tooltips"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 1.5, 2, 3, 3.5, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1, 1), Vector2(1, 1), Vector2(0, 0), Vector2(1, 1), Vector2(1, 1), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TextureRect/Walk Instructions:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TextureRect/Attack Instructions:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_edija"]
+_data = {
+&"RESET": SubResource("Animation_mc1mq"),
+&"Tooltips": SubResource("Animation_tws4h")
+}
+
+[node name="Show Controls" type="Control" unique_id=562487894]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_wt883")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=839088440]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1e-05, 1e-05)
+texture = SubResource("AtlasTexture_wt883")
+stretch_mode = 5
+
+[node name="Walk Instructions" type="Label" parent="TextureRect" unique_id=1524815987]
+visible = false
+modulate = Color(0.91764706, 0.76862746, 0.68235296, 1)
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 64
+text = "Walk With
+'W' 'A' 'S' 'D' or Arrow Keys"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Attack Instructions" type="Label" parent="TextureRect" unique_id=1385175419]
+visible = false
+modulate = Color(0.91764706, 0.76862746, 0.68235296, 1)
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 64
+text = "Attack With
+Left Click or 'H'"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Controls Shower" type="AnimationPlayer" parent="." unique_id=2088130305]
+unique_name_in_owner = true
+libraries/ = SubResource("AnimationLibrary_edija")

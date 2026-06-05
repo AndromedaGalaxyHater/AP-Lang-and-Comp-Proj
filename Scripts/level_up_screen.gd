@@ -1,15 +1,15 @@
 extends Control
 
 # set refrences to buttons
-@onready var block : Button = %"Block Up"
-@onready var damage : Button = %"Damage Up"
-@onready var fireball : Button = %"Fireball Damage Up"
-@onready var friend : Button = %"Friend Damage Up"
-@onready var health : Button = %"Health Up"
-@onready var experience : Button = %"Increase Exp Gain"
-@onready var speed : Button = %"Speed Up"
+@onready var block : TextureButton = %"Block Up"
+@onready var damage : TextureButton = %"Damage Up"
+@onready var fireball : TextureButton = %"Fireball Damage Up"
+@onready var friend : TextureButton = %"Friend Damage Up"
+@onready var health : TextureButton = %"Health Up"
+@onready var experience : TextureButton = %"Increase Exp Gain"
+@onready var speed : TextureButton = %"Speed Up"
 var level : int = 0
-
+var level_up_list = [block,damage,fireball,friend,health,experience,speed]
 
 func _ready() -> void:
 	level = 0
@@ -24,6 +24,9 @@ func turn_it_off():
 	health.visible = false
 	experience.visible = false
 	speed.visible = false
+	print(level_up_list)
+	print(len(level_up_list))
+	Global.leveling_up = false
 
 func _process(_delta: float) -> void:
 	level_up()
@@ -35,11 +38,12 @@ func level_up():
 		self.visible = true
 		Global.points += 100
 		randomize_upgrades()
+		Global.leveling_up = true
 
 func randomize_upgrades():
 	var numbers = []
 	while numbers.size() < 3:
-		var new_number = randi_range(1,7)
+		var new_number = randi_range(1,len(level_up_list)+1)
 		if not numbers.has(new_number):
 			numbers.append(new_number)
 	if numbers.has(1):
@@ -59,8 +63,9 @@ func randomize_upgrades():
 
 func _on_block_up_pressed() -> void:
 	@warning_ignore("narrowing_conversion")
-	Global.player_block *= 1.1
-	Global.player_block += 1
+	Global.player_can_block = true
+	Global.player_block_count += 1
+	Global.max_block += 1
 	self.visible = false
 	Global.paused = false
 	turn_it_off()
@@ -90,8 +95,8 @@ func _on_friend_damage_up_pressed() -> void:
 
 
 func _on_health_up_pressed() -> void:
-	Global.max_player_health += 50
-	Global.player_health = Global.max_player_health
+	Global.max_player_health = 16
+	Global.player_health = 16
 	self.visible = false
 	Global.paused = false
 	turn_it_off()

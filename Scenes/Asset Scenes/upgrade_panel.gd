@@ -44,7 +44,6 @@ func unlock_achievements():
 
 func _on_exit_upgrade_panel_pressed() -> void:
 	update_animator.play("LeaveUpgradeScreen")
-	self.visible = false
 
 func _on_item_list_item_clicked(index: int, _at_position: Vector2, _mouse_button_index: int) -> void:
 	var ability_dict = Global.ability_list.values()[index]

@@ -670,6 +670,16 @@ horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
 
+[node name="Attack Timer" type="Timer" parent="." unique_id=285735839]
+unique_name_in_owner = true
+wait_time = 0.5
+one_shot = true
+
+[node name="color flash timer" type="Timer" parent="." unique_id=1815514956]
+unique_name_in_owner = true
+wait_time = 0.2
+one_shot = true
+
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
 [connection signal="body_entered" from="Detector" to="." method="_on_detector_body_entered"]
@@ -679,3 +689,5 @@ uppercase = true
 [connection signal="timeout" from="Immunity Timer" to="." method="_on_immunity_timer_timeout"]
 [connection signal="timeout" from="velocity timer" to="." method="_on_velocity_timer_timeout"]
 [connection signal="timeout" from="Idle Timer" to="." method="_on_idle_timer_timeout"]
+[connection signal="timeout" from="Attack Timer" to="." method="_on_attack_timer_timeout"]
+[connection signal="timeout" from="color flash timer" to="." method="_on_color_flash_timer_timeout"]

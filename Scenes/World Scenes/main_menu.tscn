@@ -4,9 +4,35 @@
 [ext_resource type="FontFile" uid="uid://gh70p3nxahqe" path="res://Sprites/Other/boldpixels.ttf" id="1_7uv81"]
 [ext_resource type="PackedScene" uid="uid://baxqsqrn2fq0k" path="res://Scenes/Asset Scenes/options_menu.tscn" id="2_xjdvv"]
 [ext_resource type="PackedScene" uid="uid://cslv8uuiyxkv7" path="res://Scenes/Asset Scenes/upgrade_panel.tscn" id="3_xjdvv"]
+[ext_resource type="Texture2D" uid="uid://cicmdvv443pdj" path="res://Sprites/Other/Cover Art.png" id="4_84enj"]
+[ext_resource type="Texture2D" uid="uid://mf8qkswetxud" path="res://Sprites/Other/Button Template.png" id="5_84enj"]
 
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_rhts7"]
-blend_mode = 1
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ntlhr"]
+texture = ExtResource("4_84enj")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_84enj"]
+atlas = ExtResource("5_84enj")
+region = Rect2(128, 18, 64, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ntlhr"]
+atlas = ExtResource("5_84enj")
+region = Rect2(64, 18, 64, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wtm3k"]
+atlas = ExtResource("5_84enj")
+region = Rect2(0, 18, 64, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s0w8u"]
+atlas = ExtResource("5_84enj")
+region = Rect2(128, 18, 64, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vxj4i"]
+atlas = ExtResource("5_84enj")
+region = Rect2(64, 18, 64, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tycee"]
+atlas = ExtResource("5_84enj")
+region = Rect2(0, 18, 64, 28)
 
 [sub_resource type="Animation" id="Animation_xjdvv"]
 resource_name = "LeaveUpgradeScreen"
@@ -14,26 +40,26 @@ length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../../../..:scale")
+tracks/0/path = NodePath("%UpgradePanel:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(2.0000002, 2.0000002),
 "update": 0,
-"values": [Vector2(0, 0), Vector2(1, 1)]
+"values": [Vector2(1, 1), Vector2(0, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("%UpgradePanel:scale")
+tracks/1/path = NodePath("../../..:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(2.0000002, 2.0000002),
 "update": 0,
-"values": [Vector2(1, 1), Vector2(0, 0)]
+"values": [Vector2(0, 0), Vector2(1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_s0w8u"]
@@ -41,26 +67,26 @@ length = 6.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../../../..:scale")
+tracks/0/path = NodePath("%UpgradePanel:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(1, 1)]
+"values": [Vector2(0, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("%UpgradePanel:scale")
+tracks/1/path = NodePath("../../..:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, 0)]
+"values": [Vector2(1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_84enj"]
@@ -69,26 +95,26 @@ length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../../../..:scale")
+tracks/0/path = NodePath("%UpgradePanel:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(2.0000002, 2.0000002),
 "update": 0,
-"values": [Vector2(1, 1), Vector2(1e-05, 1e-05)]
+"values": [Vector2(0, 0), Vector2(1, 1)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("%UpgradePanel:scale")
+tracks/1/path = NodePath("../../..:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(2.0000002, 2.0000002),
+"transitions": PackedFloat32Array(2, 2),
 "update": 0,
-"values": [Vector2(0, 0), Vector2(1, 1)]
+"values": [Vector2(1, 1), Vector2(0, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ntlhr"]
@@ -98,6 +124,30 @@ _data = {
 &"UpgradeAnimation": SubResource("Animation_84enj")
 }
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_cqww4"]
+atlas = ExtResource("5_84enj")
+region = Rect2(128, 18, 64, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vxdej"]
+atlas = ExtResource("5_84enj")
+region = Rect2(64, 18, 64, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sptlg"]
+atlas = ExtResource("5_84enj")
+region = Rect2(0, 18, 64, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1p3dw"]
+atlas = ExtResource("5_84enj")
+region = Rect2(128, 18, 64, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cujjs"]
+atlas = ExtResource("5_84enj")
+region = Rect2(64, 18, 64, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t6r4x"]
+atlas = ExtResource("5_84enj")
+region = Rect2(0, 18, 64, 28)
+
 [node name="Main Menu" type="Control" unique_id=1389109679]
 layout_mode = 3
 anchors_preset = 15
@@ -106,6 +156,16 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_3cvmy")
+
+[node name="Main_Panel" type="Panel" parent="." unique_id=66757964]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_ntlhr")
 
 [node name="Options Menu" parent="." unique_id=98617940 instance=ExtResource("2_xjdvv")]
 unique_name_in_owner = true
@@ -117,19 +177,10 @@ unique_name_in_owner = true
 layout_mode = 1
 offset_bottom = -0.0014648438
 scale = Vector2(1e-05, 1e-05)
-update_animator = NodePath("../Main_Panel/BoxContainer/HBoxContainer/VBoxContainer/Upgrades/UpgradeAnimation")
+update_animator = NodePath("../BoxContainer/HBoxContainer/VBoxContainer/Upgrades/UpgradeAnimation")
 
-[node name="Main_Panel" type="Panel" parent="." unique_id=66757964]
+[node name="BoxContainer" type="BoxContainer" parent="." unique_id=1831299933]
 unique_name_in_owner = true
-material = SubResource("CanvasItemMaterial_rhts7")
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="BoxContainer" type="BoxContainer" parent="Main_Panel" unique_id=1831299933]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -138,96 +189,149 @@ grow_horizontal = 2
 grow_vertical = 2
 vertical = true
 
-[node name="Label" type="Label" parent="Main_Panel/BoxContainer" unique_id=1008331752]
+[node name="Label" type="Label" parent="BoxContainer" unique_id=1008331752]
 texture_filter = 1
 layout_mode = 2
 size_flags_vertical = 6
 size_flags_stretch_ratio = 0.33
-theme_override_colors/font_color = Color(0.6745098, 1, 0.41568628, 1)
-theme_override_colors/font_shadow_color = Color(17.976582, 0, 18.892157, 0)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 20
+theme_override_colors/font_color = Color(0.7019608, 0.4862745, 0.77254903, 1)
+theme_override_colors/font_shadow_color = Color(0.23529412, 0.25882354, 0.76862746, 0.5882353)
+theme_override_constants/shadow_outline_size = 5
 theme_override_fonts/font = ExtResource("1_7uv81")
 theme_override_font_sizes/font_size = 60
-text = "Mr. Squiggles's Search For Determination"
+text = "Game About A Wizard"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HSeparator" type="HSeparator" parent="Main_Panel/BoxContainer" unique_id=405060541]
-modulate = Color(1, 1, 1, 0)
-layout_mode = 2
-size_flags_vertical = 3
-size_flags_stretch_ratio = 0.25
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Main_Panel/BoxContainer" unique_id=2130352713]
+[node name="HBoxContainer" type="HBoxContainer" parent="BoxContainer" unique_id=2130352713]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="VSeparator" type="VSeparator" parent="Main_Panel/BoxContainer/HBoxContainer" unique_id=681413148]
+[node name="VSeparator" type="VSeparator" parent="BoxContainer/HBoxContainer" unique_id=681413148]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_stretch_ratio = 0.33
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Main_Panel/BoxContainer/HBoxContainer" unique_id=998687189]
+[node name="VBoxContainer" type="VBoxContainer" parent="BoxContainer/HBoxContainer" unique_id=998687189]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+size_flags_stretch_ratio = 0.5
 theme_override_constants/separation = 18
 
-[node name="Play" type="Button" parent="Main_Panel/BoxContainer/HBoxContainer/VBoxContainer" unique_id=993403729]
+[node name="Start" type="TextureButton" parent="BoxContainer/HBoxContainer/VBoxContainer" unique_id=559365086]
+texture_filter = 1
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_constants/outline_size = 20
-theme_override_fonts/font = ExtResource("1_7uv81")
-theme_override_font_sizes/font_size = 48
-text = "Play"
+texture_normal = SubResource("AtlasTexture_84enj")
+texture_pressed = SubResource("AtlasTexture_ntlhr")
+texture_hover = SubResource("AtlasTexture_wtm3k")
+stretch_mode = 5
 
-[node name="Upgrades" type="Button" parent="Main_Panel/BoxContainer/HBoxContainer/VBoxContainer" unique_id=1198359958]
+[node name="Start Label" type="Label" parent="BoxContainer/HBoxContainer/VBoxContainer/Start" unique_id=305989602]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.91764706, 0.76862746, 0.68235296, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.23529412)
+theme_override_font_sizes/font_size = 32
+text = "PLAY"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Upgrades" type="TextureButton" parent="BoxContainer/HBoxContainer/VBoxContainer" unique_id=1794567445]
+texture_filter = 1
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 20
-theme_override_fonts/font = ExtResource("1_7uv81")
-theme_override_font_sizes/font_size = 48
-text = "Upgrades"
+texture_normal = SubResource("AtlasTexture_s0w8u")
+texture_pressed = SubResource("AtlasTexture_vxj4i")
+texture_hover = SubResource("AtlasTexture_tycee")
+stretch_mode = 5
 
-[node name="UpgradeAnimation" type="AnimationPlayer" parent="Main_Panel/BoxContainer/HBoxContainer/VBoxContainer/Upgrades" unique_id=1401876393]
+[node name="UpgradeAnimation" type="AnimationPlayer" parent="BoxContainer/HBoxContainer/VBoxContainer/Upgrades" unique_id=1401876393]
 unique_name_in_owner = true
 libraries/ = SubResource("AnimationLibrary_ntlhr")
 
-[node name="Options" type="Button" parent="Main_Panel/BoxContainer/HBoxContainer/VBoxContainer" unique_id=1924088511]
+[node name="Upgrades Label" type="Label" parent="BoxContainer/HBoxContainer/VBoxContainer/Upgrades" unique_id=1491127551]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.91764706, 0.76862746, 0.68235296, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.23529412)
+theme_override_font_sizes/font_size = 32
+text = "UPGRADES"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Options" type="TextureButton" parent="BoxContainer/HBoxContainer/VBoxContainer" unique_id=582523189]
+texture_filter = 1
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 20
-theme_override_fonts/font = ExtResource("1_7uv81")
-theme_override_font_sizes/font_size = 48
-text = "Options"
+texture_normal = SubResource("AtlasTexture_cqww4")
+texture_pressed = SubResource("AtlasTexture_vxdej")
+texture_hover = SubResource("AtlasTexture_sptlg")
+stretch_mode = 5
 
-[node name="Exit" type="Button" parent="Main_Panel/BoxContainer/HBoxContainer/VBoxContainer" unique_id=1600187466]
+[node name="Options Label" type="Label" parent="BoxContainer/HBoxContainer/VBoxContainer/Options" unique_id=858146705]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.91764706, 0.76862746, 0.68235296, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.23529412)
+theme_override_font_sizes/font_size = 32
+text = "OPTIONS"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Exit" type="TextureButton" parent="BoxContainer/HBoxContainer/VBoxContainer" unique_id=497145724]
+texture_filter = 1
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_constants/outline_size = 20
-theme_override_fonts/font = ExtResource("1_7uv81")
-theme_override_font_sizes/font_size = 48
-text = "Exit
-"
+texture_normal = SubResource("AtlasTexture_1p3dw")
+texture_pressed = SubResource("AtlasTexture_cujjs")
+texture_hover = SubResource("AtlasTexture_t6r4x")
+stretch_mode = 5
 
-[node name="VSeparator2" type="VSeparator" parent="Main_Panel/BoxContainer/HBoxContainer" unique_id=758240837]
+[node name="Exit Label" type="Label" parent="BoxContainer/HBoxContainer/VBoxContainer/Exit" unique_id=1991666918]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.91764706, 0.76862746, 0.68235296, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.23529412)
+theme_override_font_sizes/font_size = 32
+text = "EXIT"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VSeparator2" type="VSeparator" parent="BoxContainer/HBoxContainer" unique_id=758240837]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_stretch_ratio = 0.33
 
-[node name="HSeparator2" type="HSeparator" parent="Main_Panel/BoxContainer" unique_id=1457101572]
+[node name="HSeparator2" type="HSeparator" parent="BoxContainer" unique_id=1457101572]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 size_flags_vertical = 3
-size_flags_stretch_ratio = 0.25
+size_flags_stretch_ratio = 0.1
 
 [connection signal="leave_options" from="Options Menu" to="." method="_on_options_menu_leave_options"]
-[connection signal="pressed" from="Main_Panel/BoxContainer/HBoxContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
-[connection signal="pressed" from="Main_Panel/BoxContainer/HBoxContainer/VBoxContainer/Upgrades" to="." method="_on_upgrades_pressed"]
-[connection signal="pressed" from="Main_Panel/BoxContainer/HBoxContainer/VBoxContainer/Options" to="." method="_on_options_pressed"]
-[connection signal="pressed" from="Main_Panel/BoxContainer/HBoxContainer/VBoxContainer/Exit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="BoxContainer/HBoxContainer/VBoxContainer/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="BoxContainer/HBoxContainer/VBoxContainer/Upgrades" to="." method="_on_upgrades_pressed"]
+[connection signal="pressed" from="BoxContainer/HBoxContainer/VBoxContainer/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="BoxContainer/HBoxContainer/VBoxContainer/Exit" to="." method="_on_exit_pressed"]

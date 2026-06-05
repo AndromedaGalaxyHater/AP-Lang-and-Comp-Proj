@@ -6,6 +6,13 @@
 [ext_resource type="Texture2D" uid="uid://btu48o6aohc3t" path="res://Sprites/Other/Wizard Heart.png" id="4_pg7st"]
 [ext_resource type="Texture2D" uid="uid://dfxsnvf1xs4om" path="res://Sprites/Other/fireball.png" id="5_8ovk2"]
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pg7st"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_igpyq"]
+bg_color = Color(0.25490198, 0.25490198, 0.5529412, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_igpyq"]
+
 [node name="UpgradePanel" type="Control" unique_id=345639289 node_paths=PackedStringArray("item_list")]
 layout_mode = 3
 anchors_preset = 15
@@ -51,11 +58,15 @@ texture_filter = 1
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.95686275, 0.8745098, 0.74509805, 1)
+theme_override_colors/font_hovered_color = Color(0.95686275, 0.8745098, 0.74509805, 1)
 theme_override_constants/v_separation = 8
-theme_override_constants/outline_size = 20
+theme_override_constants/outline_size = 5
 theme_override_constants/line_separation = 20
 theme_override_fonts/font = ExtResource("1_wcaau")
 theme_override_font_sizes/font_size = 32
+theme_override_styles/panel = SubResource("StyleBoxTexture_pg7st")
+theme_override_styles/focus = SubResource("StyleBoxFlat_igpyq")
 select_mode = 2
 allow_search = false
 max_text_lines = 2
@@ -66,34 +77,40 @@ same_column_width = true
 fixed_column_width = 510
 icon_mode = 0
 fixed_icon_size = Vector2i(50, 50)
-item_0/text = "Fast Learner (Dash with a lower cooldown)"
+item_0/text = "Quick Dash"
 item_0/icon = ExtResource("3_pg7st")
 item_0/selectable = false
-item_1/text = "A bout of perservierence"
+item_1/text = "Invincible Dash"
 item_1/icon = ExtResource("3_pg7st")
 item_1/selectable = false
-item_2/text = "Firebringer (Does Fire Damage)"
+item_2/text = "Fire Damage"
 item_2/selectable = false
-item_3/text = "Chilling Touch(Cold Damage)"
+item_2/disabled = true
+item_3/text = "Ice Damage"
 item_3/selectable = false
-item_4/text = "Vamirism (Grants Lifesteal)"
+item_3/disabled = true
+item_4/text = "Lifesteal"
 item_4/icon = ExtResource("4_pg7st")
 item_4/selectable = false
-item_5/text = "Tactical Learning(Nuke)"
+item_4/disabled = true
+item_5/text = "Starfall"
 item_5/icon = ExtResource("4_pg7st")
 item_5/selectable = false
-item_6/text = "Fireball (Shoot A Fireball)"
+item_5/disabled = true
+item_6/text = "Fireball"
 item_6/icon = ExtResource("5_8ovk2")
 item_6/selectable = false
-item_7/text = "Keep Your Friends Close (And Your Enemies Closer)(Tame Enemies)"
+item_7/text = "Taming"
 item_7/icon = ExtResource("4_pg7st")
 item_7/selectable = false
 
 [node name="ExitUpgradePanel" type="Button" parent="HBoxContainer/BoxContainer" unique_id=1646111368]
 modulate = Color(0.53333336, 0.7490196, 0.8509804, 1)
+texture_filter = 1
 layout_mode = 2
 theme_override_constants/outline_size = 20
 theme_override_font_sizes/font_size = 64
+theme_override_styles/normal = SubResource("StyleBoxTexture_igpyq")
 text = "Return To Home Screen"
 
 [node name="Bottom Seperator" type="HSeparator" parent="HBoxContainer/BoxContainer" unique_id=286768029]

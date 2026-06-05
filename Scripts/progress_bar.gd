@@ -1,10 +1,24 @@
-extends ProgressBar
+extends AnimatedSprite2D
 
-var health : float = Global.player_health
 var max_health : int = Global.max_player_health
 
 func _physics_process(_delta: float) -> void:
-	health = Global.player_health
-	self.value = health
-	self.max_value = max_health
-	
+	match Global.player_health:
+		16:
+			play("16")
+		14:
+			play("14")
+		12:
+			play("12")
+		10:
+			play("10")
+		8:
+			play("8")
+		6:
+			play("6")
+		4:
+			play("4")
+		2:
+			play("2")
+		0: 
+			play("0")

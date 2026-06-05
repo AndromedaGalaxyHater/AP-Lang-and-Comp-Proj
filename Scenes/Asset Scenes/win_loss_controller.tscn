@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://bkkx1faq5vul1"]
+
+[ext_resource type="PackedScene" uid="uid://edvlo3xj2od6" path="res://Scenes/Asset Scenes/win_screen.tscn" id="1_4ltoa"]
+
+[node name="Win Loss Controller" type="Control" unique_id=1091057571]
+layout_mode = 3
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+
+[node name="Timer On Screen" type="Label" parent="." unique_id=1080696506]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 38.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 32
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Timer to win" type="Timer" parent="." unique_id=1428340749]
+wait_time = 300.0
+one_shot = true
+autostart = true
+
+[node name="Win Screen" parent="." unique_id=369210595 instance=ExtResource("1_4ltoa")]
+layout_mode = 1
