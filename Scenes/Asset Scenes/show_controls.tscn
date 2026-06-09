@@ -93,20 +93,29 @@ _data = {
 }
 
 [node name="Show Controls" type="Control" unique_id=562487894]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 script = ExtResource("1_wt883")
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=839088440]
 texture_filter = 1
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -14.0
+offset_right = 32.0
+offset_bottom = 14.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1e-05, 1e-05)
@@ -123,8 +132,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(0.2, 0.2)
 theme_override_font_sizes/font_size = 64
-text = "KYS RYAN JUST DIE ALREADY"
+text = "Walk With
+'W' 'A' 'S' 'D' or Arrow Keys"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -136,8 +147,13 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -11.4
+offset_top = 1.4
+offset_right = 380.6
+offset_bottom = 88.4
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(0.2, 0.2)
 theme_override_font_sizes/font_size = 64
 text = "Attack With
 Left Click or 'H'"
