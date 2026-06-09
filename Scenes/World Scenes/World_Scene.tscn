@@ -552,10 +552,6 @@ size_flags_vertical = 2
 [node name="Level Up Screen" parent="CanvasLayer" unique_id=1697769970 instance=ExtResource("10_e2vx1")]
 
 [node name="Upgrade Achieved" parent="CanvasLayer" unique_id=1452108420 instance=ExtResource("8_8uxqj")]
-offset_left = -834.0
-offset_top = -312.0
-offset_right = -770.0
-offset_bottom = -284.0
 
 [node name="Player" parent="." unique_id=1586033930 node_paths=PackedStringArray("experience_bar") instance=ExtResource("1_hty4m")]
 position = Vector2(-53, 58)

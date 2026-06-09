@@ -798,6 +798,7 @@ script = ExtResource("6_v3x5v")
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=74752598]
 
 [node name="Health" type="AnimatedSprite2D" parent="CanvasLayer" unique_id=1284558697]
+visible = false
 texture_filter = 1
 position = Vector2(120, 120)
 scale = Vector2(15, 15)
